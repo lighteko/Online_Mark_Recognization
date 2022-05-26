@@ -5,4 +5,4 @@ const Workbooks = (workbook) => (
   </div>
 );
 
-ReactDOM.render(<Workbooks/>,root)
+ReactDOM.render(Workbooks("XI_STORY",root);
