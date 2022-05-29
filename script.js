@@ -1,4 +1,17 @@
+// csv 읽는법: 단원,문항번호,문제타입(d,o(단답식,객관식)),정답
+
 const root = document.getElementById("root");
+
+function checkNum(event) {
+		event.target.value = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+		event.target.value = event.target.value.slice(0,3);
+	if (event.target.value.length >=2 && event.target.value[0]==0) {
+		event.target.value = event.target.value.slice(1,3);
+	}
+	else if (event.target.value.length >=2 && event.target.value[0]==0 && event.target.value[1]==0) {
+		event.target.value = event.target.value.slice(2,3);
+	}
+}
 
 const App = () => (
 	<div id="app">
@@ -9,10 +22,11 @@ const App = () => (
 );
 
 
-
 function Workbooks() {
 	const [wbIndex, setWbIndex] = React.useState();
 	const [showRange, setShowRange] = React.useState("none");
+	const [showOMR, setShowOMR] = React.useState("none");
+	const [omrRange, setOmrRange] = React.useState();
 	const onSelect = (event) => {
 		const val = event.target.value;
 		if (val != "") {
@@ -24,13 +38,26 @@ function Workbooks() {
 		}
 
 	};
-	const MarkRange = () => {
+	const onRange = (event) => {
+		const val = event.target.value;
+		if (val != "") {
+			setOmrRange(val);
+			console.log(val);
+			setShowOMR("block");
+		}
+		else {
+			setOmrRange();
+			console.log(val);
+			setShowOMR("none");
+		}
+	}
+	function MarkRange() {
 		return (
 			<div id={wbIndex} style={{display: showRange}}>
-				<input id="select-range" placeholder="채점 범위를 입력해 주세요"/>
+				<input onInput={onRange} id="select-range" placeholder="채점 범위를 입력해 주세요"/>
 			</div>
 		);
-	};
+	}
 	return (
 		<div id="container">
 			<div id="select-workbooks">
@@ -42,10 +69,38 @@ function Workbooks() {
 				</select>
 			</div>
 			<MarkRange/>
+			<OMRcard workbook={wbIndex} display={showOMR} range={omrRange}/>
 		</div>
 	);
 }
 
-
+function OMRcard({workbook,display,range}) {
+	fetch(`./${workbook}.json`)
+		.then((response) => {
+			return response.json();
+		})
+		.then(jsonData => console.log(jsonData));
+    const OmrCell = ({Num}) => {
+		return (
+		<div id="omr-block">
+		    <input type="radio" name={"omr-cell_"+Num} value="1"/>
+			<input type="radio" name={"omr-cell_"+Num} value="2"/>
+			<input type="radio" name={"omr-cell_"+Num} value="3"/>
+			<input type="radio" name={"omr-cell_"+Num} value="4"/>
+			<input type="radio" name={"omr-cell_"+Num} value="5"/>
+			<input style={{width:"50px"}} type="text" onInput={checkNum} name={"omr-dir-cell_"+Num} placeholder="단답형"/>
+		</div>
+		);
+	};
+	
+	return (
+		<div style={{display:display}} id="omr-card">
+            <OmrCell Num="1"/>
+			<OmrCell Num="2"/>
+			<OmrCell Num="3"/>
+		</div>
+	);
+	
+}
 
 ReactDOM.render(<App/>,root);
