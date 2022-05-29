@@ -9,28 +9,39 @@ const App = () => (
 );
 
 
-function OMRcard({Id}) {
-	return (
-		<div id={Id}>
-			<input id="select-range" placeholder="A01~P34처럼 채점할 범위를 입력해 주세요"/>
-		</div>
-	);
-}
 
 function Workbooks() {
 	const [wbIndex, setWbIndex] = React.useState();
+	const [showRange, setShowRange] = React.useState("none");
 	const onSelect = (event) => {
-		setWbIndex(event.target.value);
-		console.log(event.target.value);
+		const val = event.target.value;
+		if (val != "") {
+			setWbIndex(val);
+			setShowRange("block");
+		}
+		else {
+			setShowRange("none");
+		}
+
+	};
+	const MarkRange = () => {
+		return (
+			<div id={wbIndex} style={{display: showRange}}>
+				<input id="select-range" placeholder="채점 범위를 입력해 주세요"/>
+			</div>
+		);
 	};
 	return (
-		<div id="select-workbooks">
-			<select name="workbooks" onChange={onSelect}>
-				<option value="">채점할 문제집을 선택해 주세요</option>
-				<option value="23xi-mathI3">2023 자이스토리 수학I (고3)</option>
-				<option value="23xi-mathII3">2023 자이스토리 수학II (고3)</option>
-				<option value="23xi-calculus3">2023 자이스토리 미적분 (고3)</option>
-			</select>
+		<div id="container">
+			<div id="select-workbooks">
+				<select name="workbooks" onChange={onSelect}>
+					<option value="">채점할 문제집을 선택해 주세요</option>
+					<option value="23xi-mathI3">2023 자이스토리 수학I (고3)</option>
+					<option value="23xi-mathII3">2023 자이스토리 수학II (고3)</option>
+					<option value="23xi-calculus3">2023 자이스토리 미적분 (고3)</option>
+				</select>
+			</div>
+			<MarkRange/>
 		</div>
 	);
 }
