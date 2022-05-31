@@ -1,4 +1,6 @@
 // csv 읽는법: 단원,문항번호,문제타입(d,o(단답식,객관식)),정답
+// range ex) A1-A16
+
 const card = document.getElementById("card-place");
 const root = document.getElementById("root");
 
@@ -13,7 +15,6 @@ function checkNum(event) {
 		event.target.value = event.target.value.slice(2,3);
 	}
 }
-// range ex) A1-A16
 
 // 채점 범위를 입력했을 때, 선택한 문제집의 답지 정보를 입력한 범위 만큼만 추출해서 답안 리스트로 만드는 함수
 function answerParser(jsonData, range) {
@@ -48,43 +49,39 @@ function answerParser(jsonData, range) {
 // 문제집 선택, omr카드가 포함되는 컴포넌트
 function Workbooks() {
 	const [wbIndex, setWbIndex] = React.useState();
-	const [showRange, setShowRange] = React.useState("none");
-	const [showOMR, setShowOMR] = React.useState("none");
-	const [omrRange, setOmrRange] = React.useState();
+	const [showRangeInput, setShowRangeInput] = React.useState("none");
+	let omrDisplay = "none";
 	const onSelect = (event) => {
 		const val = event.target.value;
 		if (val != "") {
 			setWbIndex(val);
-			setShowRange("block");
+			setShowRangeInput("block");
 		}
 		else {
-			setShowRange("none");
+			setShowRangeInput("none");
 		}
 
 	};
-	const onRange = () => {
-		const val = document.getElementById();
-		if (val != "") {
-			setOmrRange(val);
-			console.log(val);
-			setShowOMR("block");
-		}
-		else {
-			setOmrRange();
-			console.log(val);
-			setShowOMR("none");
-		}
-	};
+
 	const MarkRange = () => {
 		return (
-			<div id={wbIndex} style={{display: showRange}}>
-				<input onChange={(event) => setOmrRange(event.target.value)} id="select-range" placeholder="채점 범위를 입력해 주세요"/>
+			<div id={wbIndex} style={{display: showRangeInput}}>
+				<input id="select-range" placeholder="채점 범위를 입력해 주세요"/>
+				<button onClick={renderOMR} id="range-submit-btn">확인</button>
 			</div>
 		);
 	}
 	// 채점 범위와 문제집 아이디를 OMR카드 컴포넌트로 보내는 함수
 	function renderOMR() {
-        ReactDOM.render(<OMRcard workbook={wbIndex} range={omrRange} display={showOMR} />,card);
+		const rangeText = document.getElementById("select-range").value;
+		console.log(rangeText);
+		if (rangeText != "") {
+			omrDisplay = "block";
+		}
+		else {
+			omrDisplay = "none";
+		}
+        ReactDOM.render(<OMRcard workbook={wbIndex} range={rangeText} display={omrDisplay} />,card);
 	}
 	return (
 		<div id="container">
@@ -97,7 +94,6 @@ function Workbooks() {
 				</select>
 			</div>
 			<MarkRange/>
-			<button onClick={renderOMR} id="range-submit-btn">확인</button>
 		</div>
 	);
 }
