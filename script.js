@@ -1,5 +1,5 @@
 // csv 읽는법: 단원,문항번호,문제타입(d,o(단답식,객관식)),정답
-
+const card = document.getElementById("card-place");
 const root = document.getElementById("root");
 
 // 단답형 입력값을 최대 세자리 수의 양의 정수로 제한하는 함수
@@ -38,13 +38,12 @@ function answerParser(jsonData, range) {
 			break
 		}
 	}
+	console.log(parsedAns);
     return parsedAns;
 }
 
-// 채점 범위를 함수 인자로 전달하기 위한 함수
-function submitRange() {
-    
-}
+
+
 
 // 문제집 선택, omr카드가 포함되는 컴포넌트
 function Workbooks() {
@@ -76,12 +75,16 @@ function Workbooks() {
 			setShowOMR("none");
 		}
 	};
-	function MarkRange() {
+	const MarkRange = () => {
 		return (
 			<div id={wbIndex} style={{display: showRange}}>
-				<input id="select-range" placeholder="채점 범위를 입력해 주세요"/>
+				<input onChange={(event) => setOmrRange(event.target.value)} id="select-range" placeholder="채점 범위를 입력해 주세요"/>
 			</div>
 		);
+	}
+	// 채점 범위와 문제집 아이디를 OMR카드 컴포넌트로 보내는 함수
+	function renderOMR() {
+        ReactDOM.render(<OMRcard workbook={wbIndex} range={omrRange} display={showOMR} />,card);
 	}
 	return (
 		<div id="container">
@@ -94,8 +97,7 @@ function Workbooks() {
 				</select>
 			</div>
 			<MarkRange/>
-			<button onClick={submitRange} id="range-submit-btn">확인</button>
-			<OMRcard workbook={wbIndex} display={showOMR} range={omrRange}/>
+			<button onClick={renderOMR} id="range-submit-btn">확인</button>
 		</div>
 	);
 }
