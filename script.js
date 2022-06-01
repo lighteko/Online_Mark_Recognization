@@ -1,9 +1,8 @@
-// csv 읽는법: 단원,문항번호,문제타입(d,o(단답식,객관식)),정답
-// range ex) A1-A16
-
+// json 읽는법: 단원 chapter,문항번호 number,문제타입 type(d,o(단답식,객관식)),정답 answer
+// 범위 작성 예시 ex) A1-A16
+let answerBox = [];
 const card = document.getElementById("card-place");
 const root = document.getElementById("root");
-
 // 단답형 입력값을 최대 세자리 수의 양의 정수로 제한하는 함수
 function checkNum(event) {
 		event.target.value = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
@@ -21,30 +20,28 @@ function answerParser(jsonData, range) {
 	let keepAppend = false;
 	let appendStarted = false;
     const [start,end] = range.split('-');
-	const [startChr,startNum,endChr,endNum] = [start.charAt(0),start.substring(1,start.length-1),end.charAt(0),end.substring(1,end.length-1)];
+	const [startChr,startNum,endChr,endNum] = [start.charAt(0),start.substring(1,start.length),end.charAt(0),end.substring(1,end.length)];
 	let parsedAns = [];
 	for (let i = 0; i < jsonData.length+1; i++) {
-		if(startChr in jsonData[i]["Chapter"] && startNum in jsonData[i]["Number"]){
+		if(startChr == jsonData[i]["Chapter"] && startNum == jsonData[i]["Number"]){
 			keepAppend = true;
 			appendStarted = true;
 		}
-		else if (endChr in jsonData[i]["chapter"] && endNum in jsonData[i]["Number"]) {
+		else if (endChr == jsonData[i]["Chapter"] && endNum == jsonData[i]["Number"]) {
 			keepAppend = false;
-			parseAns.push(jsonData[i]["Answer"]);
+			parsedAns.push(jsonData[i]);
 		}
-		if(keepAppend == true){
-            parsedAns.push(jsonData[i]["Answer"]);
+		if(keepAppend == true) {
+            parsedAns.push(jsonData[i]);	
 		}
-		else if (appendStarted==true && keepAppend==false) {
+		if (appendStarted==true && keepAppend==false) {
 			break
 		}
+	answerBox = [];
+	answerBox = parsedAns;
 	}
-	console.log(parsedAns);
     return parsedAns;
 }
-
-
-
 
 // 문제집 선택, omr카드가 포함되는 컴포넌트
 function Workbooks() {
@@ -60,9 +57,7 @@ function Workbooks() {
 		else {
 			setShowRangeInput("none");
 		}
-
 	};
-
 	const MarkRange = () => {
 		return (
 			<div id={wbIndex} style={{display: showRangeInput}}>
@@ -74,14 +69,17 @@ function Workbooks() {
 	// 채점 범위와 문제집 아이디를 OMR카드 컴포넌트로 보내는 함수
 	function renderOMR() {
 		const rangeText = document.getElementById("select-range").value;
-		console.log(rangeText);
 		if (rangeText != "") {
 			omrDisplay = "block";
 		}
 		else {
 			omrDisplay = "none";
 		}
-        ReactDOM.render(<OMRcard workbook={wbIndex} range={rangeText} display={omrDisplay} />,card);
+		fetch(`./${wbIndex}.json`)
+		.then((response) => {
+			return response.json();
+		})
+		.then((jsonData) => ReactDOM.render(<OMRcard workbook={wbIndex} answers={answerParser(jsonData,rangeText)} display={omrDisplay} />,card));
 	}
 	return (
 		<div id="container">
@@ -99,36 +97,32 @@ function Workbooks() {
 }
 
 // OMR카드 컴포넌트
-function OMRcard({workbook,display,range}) {
-	const [Answers,setAnswers] = React.useState();
-	fetch(`./${workbook}.json`)
-		.then((response) => {
-			return response.json();
-		})
-		.then(jsonData => setAnswers(answerParser(jsonData,range)));
-    const OmrCell = ({Num}) => {
+function OMRcard({workbook,display,answers}) {
+	const amount = answers.length; 
+	function OmrCell({Num,Type}) {
 		return (
-		<div id="omr-block">
-		    <input type="radio" name={"omr-cell_"+Num} value="1"/>
-			<input type="radio" name={"omr-cell_"+Num} value="2"/>
-			<input type="radio" name={"omr-cell_"+Num} value="3"/>
-			<input type="radio" name={"omr-cell_"+Num} value="4"/>
-			<input type="radio" name={"omr-cell_"+Num} value="5"/>
-			<input style={{width:"50px"}} type="text" onInput={checkNum} name={"omr-dir-cell_"+Num} placeholder="단답형"/>
+		<div id={"omr-block"+Num}>
+		    <input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="1"/>
+			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="2"/>
+			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="3"/>
+			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="4"/>
+			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="5"/>
+			<input style={{width:"50px"}} type="text" onInput={checkNum} name={"omr-dir-cell_"+Num} disabled={Type=="O"? true : false} placeholder="단답형"/>
 		</div>
 		);
-	};
-	
+	}
+	const OMRblocks = () => {
+		const Blocks = answers.map((answer) => <OmrCell key={answer["Chapter"] + answer["Number"]} Num={answer["Chapter"] + answer["Number"]} Type={answer["Type"]}/>);
+		return (
+			<div id="omr-blocks">{Blocks}</div>
+		);
+	}
 	return (
-		<div style={{display:display}} id="omr-card">
-            <OmrCell Num="1"/>
-			<OmrCell Num="2"/>
-			<OmrCell Num="3"/>
+		<div style={{display:display}} id={workbook+"omr-card"}>
+            <OMRblocks/>
 		</div>
-	);
-	
+	);	
 }
-
 // 합체
 const App = () => (
 	<div id="app">
