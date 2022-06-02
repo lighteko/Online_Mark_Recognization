@@ -116,7 +116,7 @@ function OMRcard({workbook,display,answers}) {
 		);
 	}
 	const OMRblocks = () => {
-		const Blocks = answers.map((answer) => <OmrCell key={answer["Id"]} Num={answer["Chapter"] + answer["Number"]} Type={answer["Type"]}/>);
+		const Blocks = answers.map((answer) => <OmrCell key={answer["Chapter"] + answer["Number"]} Num={answer["Chapter"] + answer["Number"]} Type={answer["Type"]}/>);
 		return (
 			<div id="omr-card">
 			    <div id="omr-blocks">{Blocks}</div>
