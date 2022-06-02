@@ -1,12 +1,14 @@
 // json 읽는법: 단원 chapter,문항번호 number,문제타입 type(d,o(단답식,객관식)),정답 answer
 // 범위 작성 예시 ex) A1-A16
 let answerBox = [];
+let wrongAns = [];
 const card = document.getElementById("card-place");
+const result = document.getElementById("result-place");
 const root = document.getElementById("root");
 // 단답형 입력값을 최대 세자리 수의 양의 정수로 제한하는 함수
 function checkNum(event) {
-		event.target.value = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-		event.target.value = event.target.value.slice(0,3);
+	event.target.value = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+	event.target.value = event.target.value.slice(0,3);
 	if (event.target.value.length >=2 && event.target.value[0]==0) {
 		event.target.value = event.target.value.slice(1,3);
 	}
@@ -17,17 +19,19 @@ function checkNum(event) {
 
 // 채점 범위를 입력했을 때, 선택한 문제집의 답지 정보를 입력한 범위 만큼만 추출해서 답안 리스트로 만드는 함수
 function answerParser(jsonData, range) {
+	const Range = range.toUpperCase();
 	let keepAppend = false;
 	let appendStarted = false;
-    const [start,end] = range.split('-');
-	const [startChr,startNum,endChr,endNum] = [start.charAt(0),start.substring(1,start.length),end.charAt(0),end.substring(1,end.length)];
+    const [start,end] = Range.split('-');
+	const [[startCh,startNum],[endCh,endNum]] = [start.split('.'),end.split('.')];
+	console.log(startCh,startNum,endCh,endNum);
 	let parsedAns = [];
 	for (let i = 0; i < jsonData.length+1; i++) {
-		if(startChr == jsonData[i]["Chapter"] && startNum == jsonData[i]["Number"]){
+		if(startCh == jsonData[i]["Chapter"] && startNum == jsonData[i]["Number"]){
 			keepAppend = true;
 			appendStarted = true;
 		}
-		else if (endChr == jsonData[i]["Chapter"] && endNum == jsonData[i]["Number"]) {
+		else if (endCh == jsonData[i]["Chapter"] && endNum == jsonData[i]["Number"]) {
 			keepAppend = false;
 			parsedAns.push(jsonData[i]);
 		}
@@ -112,9 +116,12 @@ function OMRcard({workbook,display,answers}) {
 		);
 	}
 	const OMRblocks = () => {
-		const Blocks = answers.map((answer) => <OmrCell key={answer["Chapter"] + answer["Number"]} Num={answer["Chapter"] + answer["Number"]} Type={answer["Type"]}/>);
+		const Blocks = answers.map((answer) => <OmrCell key={answer["Id"]} Num={answer["Chapter"] + answer["Number"]} Type={answer["Type"]}/>);
 		return (
-			<div id="omr-blocks">{Blocks}</div>
+			<div id="omr-card">
+			    <div id="omr-blocks">{Blocks}</div>
+			    <button onClick={onSubmitClick} id="submit">채점하기</button>
+			</div>
 		);
 	}
 	return (
@@ -123,6 +130,48 @@ function OMRcard({workbook,display,answers}) {
 		</div>
 	);	
 }
+
+//채점하기 버튼 클릭했을 때 실행하는 함수
+function onSubmitClick() {
+	checkAns().then(()=>renderResult());
+}
+
+//채점하는 함수
+async function checkAns() {
+	wrongAns = [];
+	for(let answer of answerBox) {
+		if(answer["Type"]=="O"){
+			let marked = document.querySelector(`${'input[name="'+"omr-cell_"+answer["Chapter"]+answer["Number"]+'"]:checked'}`).value;
+			if (marked!=answer["Answer"]) {
+				wrongAns.push(answer["Chapter"]+answer["Number"]);
+			}
+	    }
+		else if(answer["Type"]=="D") {
+			let markedD = document.getElementsByName(`${"omr-dir-cell_"+answer["Chapter"]+answer["Number"]}`)[0].value;
+			if (markedD!=answer["Answer"]) {
+				wrongAns.push(answer["Chapter"]+answer["Number"]);
+			}
+		}
+	}
+}
+
+//채점결과 컴포넌트
+function Result({marking}) {
+	let [wrong, right] = ["none","none"];
+	marking.length==0 ? [wrong,right]=["none","block"] : [wrong,right]=["block","none"];
+	return (
+		<div id="result">
+			<span id="wrong-result" style={{display: wrong}}>{"채점 결과 " + marking.join(",")+ ` 총 ${marking.length}문항이 틀렸습니다.`}</span>
+			<span id="right-result" style={{display: right}}>채점 결과 모두 맞았습니다!! 축하합니다!!</span>
+		</div>
+	);
+}
+
+//채점결과 컴포넌트 렌더링 함수
+function renderResult() {
+    ReactDOM.render(<Result marking={wrongAns}/>,result);
+}
+
 // 합체
 const App = () => (
 	<div id="app">
