@@ -106,6 +106,7 @@ function OMRcard({workbook,display,answers}) {
 	function OmrCell({Num,Type}) {
 		return (
 		<div id={"omr-block"+Num}>
+			<span>{Num}</span>
 		    <input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="1"/>
 			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="2"/>
 			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="3"/>
@@ -131,12 +132,11 @@ function OMRcard({workbook,display,answers}) {
 	);	
 }
 
-//채점하기 버튼 클릭했을 때 실행하는 함수
+//채점하기 버튼 클
 function onSubmitClick() {
 	checkAns().then(()=>renderResult());
 }
 
-//채점하는 함수
 async function checkAns() {
 	wrongAns = [];
 	for(let answer of answerBox) {
@@ -154,8 +154,6 @@ async function checkAns() {
 		}
 	}
 }
-
-//채점결과 컴포넌트
 function Result({marking}) {
 	let [wrong, right] = ["none","none"];
 	marking.length==0 ? [wrong,right]=["none","block"] : [wrong,right]=["block","none"];
@@ -167,11 +165,9 @@ function Result({marking}) {
 	);
 }
 
-//채점결과 컴포넌트 렌더링 함수
 function renderResult() {
     ReactDOM.render(<Result marking={wrongAns}/>,result);
 }
-
 // 합체
 const App = () => (
 	<div id="app">

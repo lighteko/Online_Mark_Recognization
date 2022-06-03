@@ -3,112 +3,96 @@
     "Chapter": "A",
     "Number": 1,
     "Type": "O",
-    "Answer": 5,
-	"Id": 1
+    "Answer": 5
   },
   {
     "Chapter": "A",
     "Number": 2,
     "Type": "O",
-    "Answer": 1,
-	"Id": 2
+    "Answer": 1
   },
   {
     "Chapter": "A",
     "Number": 3,
     "Type": "O",
-    "Answer": 2,
-	"Id": 3
+    "Answer": 2
   },
   {
     "Chapter": "A",
     "Number": 4,
     "Type": "O",
-    "Answer": 5,
-	"Id": 4
+    "Answer": 5
   },
   {
     "Chapter": "A",
     "Number": 5,
     "Type": "D",
-    "Answer": 16,
-	"Id": 5
+    "Answer": 16
   },
   {
     "Chapter": "A",
     "Number": 6,
     "Type": "O",
-    "Answer": 1,
-	"Id": 6
+    "Answer": 1
   },
   {
     "Chapter": "A",
     "Number": 7,
     "Type": "D",
-    "Answer": 25,
-	"Id": 7
+    "Answer": 25
   },
   {
     "Chapter": "A",
     "Number": 8,
     "Type": "O",
-    "Answer": 4,
-	"Id": 8
+    "Answer": 4
   },
   {
     "Chapter": "A",
     "Number": 9,
     "Type": "O",
-    "Answer": 5,
-	"Id": 9
+    "Answer": 5
   },
   {
     "Chapter": "A",
     "Number": 10,
     "Type": "O",
-    "Answer": 1,
-	"Id": 10
+    "Answer": 1
   },
   {
     "Chapter": "A",
     "Number": 11,
     "Type": "O",
-    "Answer": 2,
-	"Id": 11
+    "Answer": 2
   },
   {
     "Chapter": "A",
     "Number": 12,
     "Type": "O",
-    "Answer": 3,
-	"Id": 12
+    "Answer": 3
   },
   {
     "Chapter": "A",
     "Number": 13,
     "Type": "O",
-    "Answer": 4,
-	"Id": 13
+    "Answer": 4
   },
   {
     "Chapter": "A",
     "Number": 14,
     "Type": "O",
-    "Answer": 1,
-	"Id": 14
+    "Answer": 1
   },
   {
     "Chapter": "A",
     "Number": 15,
     "Type": "O",
-    "Answer": 5,
-	"Id": 15
+    "Answer": 5
   },
   {
     "Chapter": "A",
     "Number": 16,
     "Type": "O",
-    "Answer": 5,
-	"Id": 16
+    "Answer": 5
   }
 ]
