@@ -3,3 +3,85 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+input[type="radio"] { 
+	position: absolute; 
+	width: 1px; 
+	height: 1px; 
+	padding: 0; 
+	margin: -1px; 
+	overflow: hidden; 
+	clip:rect(0,0,0,0); border: 0; 
+}
+input[type="radio"] + label {         
+	display: inline-block; 
+	position: relative; 
+	padding-left: 30px;  
+	cursor: pointer; 
+	-webkit-user-select: none;
+	-moz-user-select: none; 
+    -ms-user-select: none; 
+	}
+
+input[type="radio"] + label:before {
+	color: #cacece;
+	position: absolute; 
+	left: 0px; 
+	top: 0px; 
+	text-align: center;
+	width: 21px; 
+	height: 21px; 
+	line-height: 19px;
+	background: #ffffff; 
+	border: 1px solid #cacece; 
+	border-radius: 100%; 
+}
+
+input[type="radio"].value1 + label:before { 
+	content: '1';
+}
+input[type="radio"].value2 + label:before { 
+	content: '2'; 
+}
+input[type="radio"].value3 + label:before { 
+	content: '3'; 
+}
+input[type="radio"].value4 + label:before { 
+	content: '4'; 
+}
+input[type="radio"].value5 + label:before { 
+	content: '5'; 
+}
+
+input[type="radio"]:checked + label:before { background: #282828; border-color: #282828; }
+input[type="radio"]:checked + label:after {
+	color: #ffffff;
+	position: absolute; 
+	top: -0.2px; 
+	left: 7px; 
+	width: 21px; 
+	height: 21px; 
+	background: #ffffff00; 
+	border-color: #ffffff00;
+	border-radius: 100%; 	
+}
+
+input[type="radio"].value1:checked + label:after { 
+	content: '1'; 
+}
+
+input[type="radio"].value2:checked + label:after { 
+	content: '2'; 
+}
+
+input[type="radio"].value3:checked + label:after { 
+	content: '3';
+}
+
+input[type="radio"].value4:checked + label:after { 
+	content: '4'; 
+}
+
+input[type="radio"].value5:checked + label:after { 
+	content: '5'; 
+}

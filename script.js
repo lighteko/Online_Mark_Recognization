@@ -24,7 +24,6 @@ function answerParser(jsonData, range) {
 	let appendStarted = false;
     const [start,end] = Range.split('-');
 	const [[startCh,startNum],[endCh,endNum]] = [start.split('.'),end.split('.')];
-	console.log(startCh,startNum,endCh,endNum);
 	let parsedAns = [];
 	for (let i = 0; i < jsonData.length+1; i++) {
 		if(startCh == jsonData[i]["Chapter"] && startNum == jsonData[i]["Number"]){
@@ -105,13 +104,15 @@ function OMRcard({workbook,display,answers}) {
 	const amount = answers.length; 
 	function OmrCell({Num,Type}) {
 		return (
-		<div id={"omr-block"+Num}>
-			<span>{Num}</span>
-		    <input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="1"/>
-			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="2"/>
-			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="3"/>
-			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="4"/>
-			<input type="radio" name={"omr-cell_"+Num} disabled={Type=="O"? false : true} value="5"/>
+		<div id={"omr-block"+Num} style={{display: "flex",marginTop: "10px", marginBottom: "10px"}}>
+			<span style={{width: "50px"}}>{Num}</span>
+			<div id="radios" style={{display:"flex"}}>
+				<Radio name={"omr_cell"+Num} value="1" useAble={Type=="O"? false : true}/>
+				<Radio name={"omr_cell"+Num} value="2" useAble={Type=="O"? false : true}/>
+				<Radio name={"omr_cell"+Num} value="3" useAble={Type=="O"? false : true}/>
+				<Radio name={"omr_cell"+Num} value="4" useAble={Type=="O"? false : true}/>
+				<Radio name={"omr_cell"+Num} value="5" useAble={Type=="O"? false : true}/>
+			</div>
 			<input style={{width:"50px"}} type="text" onInput={checkNum} name={"omr-dir-cell_"+Num} disabled={Type=="O"? true : false} placeholder="단답형"/>
 		</div>
 		);
@@ -141,7 +142,14 @@ async function checkAns() {
 	wrongAns = [];
 	for(let answer of answerBox) {
 		if(answer["Type"]=="O"){
-			let marked = document.querySelector(`${'input[name="'+"omr-cell_"+answer["Chapter"]+answer["Number"]+'"]:checked'}`).value;
+			try {
+	            let marked = document.querySelector(`${'input[name="'+"omr_cell"+answer["Chapter"]+answer["Number"]+'"]:checked'}`).value;
+			}
+			catch{
+				window.alert("답안을 작성해 주세요!");
+                return
+			}
+
 			if (marked!=answer["Answer"]) {
 				wrongAns.push(answer["Chapter"]+answer["Number"]);
 			}
@@ -176,5 +184,14 @@ const App = () => (
 		<Workbooks />
 	</div>
 );
+
+function Radio({name, value, useAble}) {
+	return(
+	<div id="radio-container" >
+		<input className={"value"+value} id={name+value} type="radio" name={name} value={value} disabled={useAble} style={{margin: "10px",}}/>
+		<label style={{width:"23px"}} htmlFor={name+value}>{"ㅤ"}</label>
+	</div>
+	);
+}
 
 ReactDOM.render(<App/>,root);
