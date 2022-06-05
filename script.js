@@ -1,5 +1,10 @@
 // json 읽는법: 단원 chapter,문항번호 number,문제타입 type(d,o(단답식,객관식)),정답 answer
 // 범위 작성 예시 ex) A1-A16
+let mainPageView ="none";
+let enterancePageView="block";
+let resultPageView="none";
+let omrCardPageView="none";
+
 let answerBox = [];
 let wrongAns = [];
 const card = document.getElementById("card-place");
@@ -70,7 +75,7 @@ function Workbooks() {
 		);
 	}
 	// 채점 범위와 문제집 아이디를 OMR카드 컴포넌트로 보내는 함수
-	function renderOMR() {
+function renderOMR() {
 		const rangeText = document.getElementById("select-range").value;
 		if (rangeText != "") {
 			omrDisplay = "block";
@@ -142,14 +147,7 @@ async function checkAns() {
 	wrongAns = [];
 	for(let answer of answerBox) {
 		if(answer["Type"]=="O"){
-			try {
-	            let marked = document.querySelector(`${'input[name="'+"omr_cell"+answer["Chapter"]+answer["Number"]+'"]:checked'}`).value;
-			}
-			catch{
-				window.alert("답안을 작성해 주세요!");
-                return
-			}
-
+			let marked = document.querySelector(`${'input[name="'+"omr_cell"+answer["Chapter"]+answer["Number"]+'"]:checked'}`).value;
 			if (marked!=answer["Answer"]) {
 				wrongAns.push(answer["Chapter"]+answer["Number"]);
 			}
@@ -162,6 +160,7 @@ async function checkAns() {
 		}
 	}
 }
+
 function Result({marking}) {
 	let [wrong, right] = ["none","none"];
 	marking.length==0 ? [wrong,right]=["none","block"] : [wrong,right]=["block","none"];
@@ -176,21 +175,88 @@ function Result({marking}) {
 function renderResult() {
     ReactDOM.render(<Result marking={wrongAns}/>,result);
 }
-// 합체
-const App = () => (
-	<div id="app">
-		<h1>OMR: 온라인 문제집 자동 채점 서비스</h1>
-		<h3>이용해 주셔서 감사합니다.</h3>
-		<Workbooks />
-	</div>
-);
 
+// 합체
+function App() {
+	return (
+	<div id="app">
+		<Enterance/>
+	</div>
+	);
+}
+
+//omr 라디오 버튼
 function Radio({name, value, useAble}) {
 	return(
 	<div id="radio-container" >
 		<input className={"value"+value} id={name+value} type="radio" name={name} value={value} disabled={useAble} style={{margin: "10px",}}/>
 		<label style={{width:"23px"}} htmlFor={name+value}>{"ㅤ"}</label>
 	</div>
+	);
+}
+
+function Enterance() {	
+	return (
+		<div style={{justifyContent :"center"}} id="enterance">
+			<div style={{width:"410px",margin:"auto",}} id="illust-container">
+				<img style={{width: "410px"}} src="https://i.ibb.co/Qrw1MgH/Tiny-student-sitting-on-book-pile-and-reading.jpg" alt="Tiny-student-sitting-on-book-pile-and-reading" border="0"/>
+			</div>
+			<div id="text-container">
+				<div style={{display:"flex",justifyContent: "center",}} id="title-text">
+					<h1 style={{lineHeight:"30px"}}>ONLINE<br/>MARKING READER</h1>
+				</div>
+				<p style={{fontSize:"1.3em"}}>채점이 귀찮으시다고요?</p>
+				<p>OMR이 자동으로 문제집을 채점해 드립니다.<br/>지금 바로 시작하세요!!</p>
+			</div>
+			<div style={{display :"flex",justifyContent: "center",marginTop:"200px"}} id="start-btn-container">
+				<Button onclick={showMainPage} id="start" value={"시작하기"} />
+			</div>
+		</div>
+	);
+}
+
+function Main() {
+	function ChooseSubject() {
+		return(
+			<div id="sb-container">
+				<button type="button" id="sb-korean">국어</button>
+				<button type="button" id="sb-math">수학</button>
+				<button type="button" id="sb-english">영어</button>
+				<button type="button" id="sb-science">과학</button>
+				<button type="button" id="sb-sociology">사회</button>
+			</div>
+		);
+	}
+	return (
+		<div id="main">
+			<div id="step1">
+				<h1>STEP1</h1>
+				<span>과목 선택하기</span>
+			</div>
+			<div id="step2">
+				<h1>STEP2</h1>
+				<span>문제집 선택하기</span>
+			</div>
+			<div id="step3">
+				<h1>STEP3</h1>
+				<span>범위 선택하기</span>
+			</div>
+		</div>
+	);
+}
+
+function showMainPage() {
+	mainPageView="block";
+    enterancePageView="none";
+    resultPageView="none";
+    omrCardPageView="none";
+	ReactDOM.render(<Main/>,root);
+}
+
+function Button({id,cls,value,onclick}) {
+	return(
+        <div style={{justifyContent:"center",alignItems :"center"}} id="Button">
+		<button type="button" id={id} onClick={onclick} className={cls}><span style={{fontSize :"1.7em", color :"#ffffff"}}>{value}</span></button></div>
 	);
 }
 

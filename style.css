@@ -4,7 +4,38 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {font-family: 'GmarketSansBold';}
+
+span, input, button, p {font-family: 'GmarketSansMedium';}
+span, p, footer{color:#363942;}
+span, p {font-size:0.8em;text-align:center;}
+footer {font-family: 'GmarketSansLight';}
+
 input[type="radio"] { 
+	font-family: 'GmarketSansMedium';
 	position: absolute; 
 	width: 1px; 
 	height: 1px; 
@@ -14,6 +45,7 @@ input[type="radio"] {
 	clip:rect(0,0,0,0); border: 0; 
 }
 input[type="radio"] + label {         
+	font-family: 'GmarketSansMedium';
 	display: inline-block; 
 	position: relative; 
 	padding-left: 30px;  
@@ -24,6 +56,7 @@ input[type="radio"] + label {
 	}
 
 input[type="radio"] + label:before {
+	font-family: 'GmarketSansMedium';
 	color: #cacece;
 	position: absolute; 
 	left: 0px; 
@@ -31,7 +64,7 @@ input[type="radio"] + label:before {
 	text-align: center;
 	width: 21px; 
 	height: 21px; 
-	line-height: 19px;
+	line-height: 24px;
 	background: #ffffff; 
 	border: 1px solid #cacece; 
 	border-radius: 100%; 
@@ -53,19 +86,35 @@ input[type="radio"].value5 + label:before {
 	content: '5'; 
 }
 
-input[type="radio"]:checked + label:before { background: #282828; border-color: #282828; }
+	
+input[type="radio"]:checked + label:before { background: #282828; border-color: #282828; font-family: 'GmarketSansMedium';}
 input[type="radio"]:checked + label:after {
+	font-family: 'GmarketSansMedium';
 	color: #ffffff;
 	position: absolute; 
-	top: -0.2px; 
-	left: 7px; 
+	top: 2.8px; 
+	left: 6px; 
 	width: 21px; 
 	height: 21px; 
 	background: #ffffff00; 
 	border-color: #ffffff00;
 	border-radius: 100%; 	
 }
-
+button {
+	display:flex;
+	align-items:center;
+    justify-content:center;
+    text-align:center;
+	position:relative;
+	width:223px;
+	height:52px;
+	background:#5fa28a;
+	border-radius:8px;
+	border: 0px;
+}
+button:active{
+	background: #9CC9B9;
+}
 input[type="radio"].value1:checked + label:after { 
 	content: '1'; 
 }
@@ -84,4 +133,11 @@ input[type="radio"].value4:checked + label:after {
 
 input[type="radio"].value5:checked + label:after { 
 	content: '5'; 
+}
+
+footer {
+	position: absolute;
+	bottom: 10px;
+	font-size: 0.2em;
+	color: #28282804;
 }
