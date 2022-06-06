@@ -1,0 +1,52 @@
+{
+	"korean": [
+		{
+			"id":"23xi-koreanLit",
+			"value":"2023 자이스토리 수능국어 문학 실전"
+		}
+	],
+	"math": [
+		{
+			"id":"23xi-mathI3",
+			"value":"2023 자이스토리 수학I (고3)"
+		},
+		{
+			"id":"23xi-mathII3",
+			"value":"2023 자이스토리 수학II (고3)"
+		},
+		{
+			"id":"23xi-calculus3",
+			"value":"2023 자이스토리 미적분 (고3)"
+		}
+	],
+	"english": [
+		{
+			"id":"2023ebs1English",
+			"value":"2023 EBS 수능특강 영어"
+		}
+	],
+	"science": [
+		{
+			"id":"23xi-physicsI",
+			"value": "2023 자이스토리 물리학I"
+		},
+		{
+			"id":"23xi-chemistryI",
+			"value":"2023 자이스토리 화학I"
+		},
+		{
+			"id":"23xi-biologyI",
+			"value":"2023 자이스토리 생명과학I"
+		},
+		{
+			"id":"23xi-earthI",
+			"value":"2023 자이스토리 지구과학I"
+		}
+	],
+	"sociology": [
+		{
+			"id":"unset",
+			"value":"unset"
+		}
+	]
+}

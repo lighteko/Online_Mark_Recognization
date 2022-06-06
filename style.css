@@ -34,6 +34,36 @@ span, p, footer{color:#363942;}
 span, p {font-size:0.8em;text-align:center;}
 footer {font-family: 'GmarketSansLight';}
 
+#wbdropdown-container {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+	margin-bottom: 50px;
+}
+
+#range-start {
+	display: flex;
+	align-items: baseline;
+}
+
+select {
+	width: 261px;
+	height: 35px;
+	border: 0px;
+	background: #E7E7E7;
+	border-radius: 10px;
+}
+
+select#start-chapter {
+	width: 64px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+
+#select-range-container {
+	margin-top: 30px;
+}
+
 input[type="radio"] { 
 	font-family: 'GmarketSansMedium';
 	position: absolute; 
@@ -42,7 +72,8 @@ input[type="radio"] {
 	padding: 0; 
 	margin: -1px; 
 	overflow: hidden; 
-	clip:rect(0,0,0,0); border: 0; 
+	clip:rect(0,0,0,0); 
+	border: 0; 
 }
 input[type="radio"] + label {         
 	font-family: 'GmarketSansMedium';
@@ -140,4 +171,14 @@ footer {
 	bottom: 10px;
 	font-size: 0.2em;
 	color: #28282804;
+}
+
+button.sb {
+	width: 50px;
+	height: 50px;
+	border-radius: 25px;
+	background: #A2DAC6;
+	margin-left: 5px;
+	margin-right: 5px;
+	color: #ffffff;
 }
