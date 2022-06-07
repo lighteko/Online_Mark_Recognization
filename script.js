@@ -223,6 +223,10 @@ function Main() {
 	const [workBook, setworkBook] = React.useState([]);
 	const [wbLoading,setwbLoading] = React.useState(true);
 	const [focus, setFocus] = React.useState({bg:"#32A37A",bs:"0px 0px 20px #6BE2B8"});
+	const [startChp, setStartChp] = React.useState("");
+	const [startNum, setStartNum] = React.useState("");
+	const [maxNum, setMaxNum] = React.useState("1");
+
 	function H1({value}) {
 		return(<h1 style={{marginBottom:"0px",display:"flex",justifyContent:"center"}}>{value}</h1>)
 	}
@@ -288,30 +292,73 @@ function Main() {
 			</div>
 		);
 	}
-	function RangeStart () {
+	function RangeStart() {	
 		function StartCh({workbook}) {
 			let chapters = Array.from(new Set(workbook.map((Q)=>(Q["Chapter"]))));
 			return (
-				<div id="range-start">
+				<div id="range-chapter-start">
 					<h3 style={{width: "40px"}}>시작</h3>
-					<select id="start-chapter">
+					<select onChange={(event)=>setStartChp(event.target.value)} id="start-chapter">
+						<option id="placeholder" value="">단원 선택</option>
 						{chapters.map((chapter) => (<option id={chapter} key={chapter} value={chapter}>{chapter}</option>))}
 					</select>
 					<h3 style={{width: "40px"}}>단원</h3>
-				</div>		
+				</div>
+			);
+		}
+		function StartNum({workbook, startCh}) {
+			let maxNum;
+			let numbers = [];
+			console.log(workbook);
+			console.log(startCh);
+			for (let i=workbook.length-1;i>=0;i--) {
+				console.log(i, workbook[i]);
+				if(workbook[i]["Chapter"]==startCh) {
+					maxNum = workbook[i]["Number"];
+					break
+				}
+			}
+			for (let i=1; i<= maxNum; i++) {
+				numbers.push(i);
+			}
+			return (
+				<div id="range-number-start">
+					<select onChange={(event)=>setStartNum(event.target.value)} id="start-number">
+						<option id="placeholder" value="">문제 선택</option>
+						{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
+					</select>
+					<h3 style={{width:"40px"}}>문제</h3>
+				</div>
 			);
 		}
 		return (
 			<div id="range-start">
 				<StartCh workbook={workBook} />
+				<StartNum workbook={workBook} startCh={startChp}/>
 			</div>
 		);
 		
+	}
+	function RangeEnd() {
+		function EndCh() {
+			return();
+		}
+		function EndNum() {
+			return();
+		}
+		return (
+			<div id="range-end">
+				<EndCh workbook={workBook} startCh={startChp} startNum={startNum}/>
+				<EndNum workbook={workBook} startCh={startChp} startNum={startNum}/>
+			</div>
+		);
 	}
 	function ChooseRange() {
 		return(
 			<div id="select-range-continer">
 				<RangeStart/>
+				<RangeEnd/>
+				<button type="button" id="submit-range-btn">답안지 작성</button>
 			</div>
 		);
 	}

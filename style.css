@@ -41,9 +41,15 @@ footer {font-family: 'GmarketSansLight';}
 	margin-bottom: 50px;
 }
 
-#range-start {
+#range-chapter-start, #range-number-start {
 	display: flex;
 	align-items: baseline;
+}
+
+#range-start {
+	margin-top: 40px;
+	display: flex;
+	flex-direction: row;
 }
 
 select {
@@ -54,8 +60,8 @@ select {
 	border-radius: 10px;
 }
 
-select#start-chapter {
-	width: 64px;
+select#start-chapter, #start-number {
+	width: 80px;
     margin-left: 20px;
     margin-right: 10px;
 }
