@@ -53,7 +53,7 @@ function answerParser(jsonData, range) {
 }
 
 // 문제집 선택, omr카드가 포함되는 컴포넌트
-function Workbooks() {
+function Workbooks() {	
 	const [wbIndex, setWbIndex] = React.useState();
 	const [showRangeInput, setShowRangeInput] = React.useState("none");
 	let omrDisplay = "none";
@@ -226,6 +226,8 @@ function Main() {
 	const [startChp, setStartChp] = React.useState("");
 	const [startNum, setStartNum] = React.useState("");
 	const [maxNum, setMaxNum] = React.useState("1");
+	const [rsloading, setRsloading] = React.useState(true);
+	const [reloading, setReloading] = React.useState(true);
 
 	function H1({value}) {
 		return(<h1 style={{marginBottom:"0px",display:"flex",justifyContent:"center"}}>{value}</h1>)
@@ -292,6 +294,10 @@ function Main() {
 			</div>
 		);
 	}
+	function onRangeStart(event) {
+		setRsloading(false);
+		setStartNum(event.target.value);
+	}
 	function RangeStart() {	
 		function StartCh({workbook}) {
 			let chapters = Array.from(new Set(workbook.map((Q)=>(Q["Chapter"]))));
@@ -309,10 +315,7 @@ function Main() {
 		function StartNum({workbook, startCh}) {
 			let maxNum;
 			let numbers = [];
-			console.log(workbook);
-			console.log(startCh);
 			for (let i=workbook.length-1;i>=0;i--) {
-				console.log(i, workbook[i]);
 				if(workbook[i]["Chapter"]==startCh) {
 					maxNum = workbook[i]["Number"];
 					break
@@ -323,7 +326,7 @@ function Main() {
 			}
 			return (
 				<div id="range-number-start">
-					<select onChange={(event)=>setStartNum(event.target.value)} id="start-number">
+					<select onChange={(event)=>onRangeStart(event)} id="start-number">
 						<option id="placeholder" value="">문제 선택</option>
 						{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
 					</select>
@@ -340,13 +343,17 @@ function Main() {
 		
 	}
 	function RangeEnd() {
-		function EndCh() {
-			return();
+		function EndCh({workbook, startCh, startNum}) {
+			return(
+				
+			);
 		}
-		function EndNum() {
-			return();
+		function EndNum({workbook, startCh, startNum}) {
+			return (
+
+			);
 		}
-		return (
+		return(
 			<div id="range-end">
 				<EndCh workbook={workBook} startCh={startChp} startNum={startNum}/>
 				<EndNum workbook={workBook} startCh={startChp} startNum={startNum}/>
@@ -355,10 +362,10 @@ function Main() {
 	}
 	function ChooseRange() {
 		return(
-			<div id="select-range-continer">
+			<div id="select-range-container">
 				<RangeStart/>
-				<RangeEnd/>
-				<button type="button" id="submit-range-btn">답안지 작성</button>
+				{rsloading==false ? <RangeEnd/> : null}
+				{reloading==false ? <Button id="range-submit-btn" value="답안지 작성" /> : null}
 			</div>
 		);
 	}
@@ -396,7 +403,8 @@ function showMainPage() {
 
 function Button({id,cls,value,onclick}) {
 	return(
-        <div style={{justifyContent:"center",alignItems:"center"}} id="Button">
+        <div style={{display:"flex",
+justifyContent:"center",alignItems:"center"}} id="Button">
 		<button type="button" id={id} onClick={onclick} className={cls}><span style={{fontSize :"1.7em", color :"#ffffff"}}>{value}</span></button></div>
 	);
 }
