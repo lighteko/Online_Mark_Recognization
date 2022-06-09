@@ -225,6 +225,8 @@ function Main() {
 	const [focus, setFocus] = React.useState({bg:"#32A37A",bs:"0px 0px 20px #6BE2B8"});
 	const [startChp, setStartChp] = React.useState("");
 	const [startNum, setStartNum] = React.useState("");
+	const [endChp, setEndChp] = React.useState("");
+	const [endNum, setEndNum] = React.useState("");
 	const [maxNum, setMaxNum] = React.useState("1");
 	const [rsloading, setRsloading] = React.useState(true);
 	const [reloading, setReloading] = React.useState(true);
@@ -298,6 +300,10 @@ function Main() {
 		setRsloading(false);
 		setStartNum(event.target.value);
 	}
+	function onRangeEnd(event) {
+		setReloading(false);
+		setEndNum(event.target.value);
+	}
 	function RangeStart() {	
 		function StartCh({workbook}) {
 			let chapters = Array.from(new Set(workbook.map((Q)=>(Q["Chapter"]))));
@@ -318,6 +324,7 @@ function Main() {
 			for (let i=workbook.length-1;i>=0;i--) {
 				if(workbook[i]["Chapter"]==startCh) {
 					maxNum = workbook[i]["Number"];
+					setMaxNum(maxNum);
 					break
 				}
 			}
@@ -340,23 +347,64 @@ function Main() {
 				<StartNum workbook={workBook} startCh={startChp}/>
 			</div>
 		);
-		
 	}
 	function RangeEnd() {
 		function EndCh({workbook, startCh, startNum}) {
+			const [pickAbleChaps, setPickAbleChaps] = React.useState([]);
+			let chapters = [];
+			async function chapterfinder() {
+				for (let i=0;i<workbook.length;i++) {
+					if (startCh == workbook[i]["Chapter"]) {
+						if (startNum == workbook[i]["Number"]) {
+							chapters.push(workbook[i]["Chapter"]);
+						}
+					}
+				}
+			function chaptermaker() {
+				chapters = chapters.slice(1,chapters.length);
+				chapters = Array.from(new Set(chapters));
+				setPickAbleChaps(chapters);
+			}
+			
+			chapterfinder().then(()=>chaptermaker());
+			
 			return(
-				
+				<div id="range-number-start">
+					<h3 style={{width: "40px"}}>끝</h3>
+					<select onChange={(event)=>setEndChp(event.target.value)} id="end-chapter">
+						<option id="placeholder" value="">단원 선택</option>
+						{pickAbleChaps.map((chapter) => (<option id={chapter} key={chapter} value={chapter}>{chapter}</option>))}
+					</select>
+					<h3 style={{width: "40px"}}>단원</h3>
+				</div>
 			);
 		}
-		function EndNum({workbook, startCh, startNum}) {
+		function EndNum({workbook, endCh}) {
+			let maxNum; 
+			let numbers = [];
+			for (let i=workbook.length-1;i>=0;i--) {
+				if(workbook[i]["Chapter"]==startChp) {
+					maxNum = workbook[i]["Number"];
+					break
+				}
+			}
+			for (let i=1; i<= maxNum; i++) {
+				numbers.push(i);
+			}
 			return (
-
+				<div id="range-number-end">
+					<select onChange={(event)=>onRangeEnd(event)} id="end-number">
+						<option id="placeholder" value="">문제 선택</option>
+						{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
+					</select>
+					<h3 style={{width:"40px"}}>문제</h3>
+				</div>
 			);
 		}
 		return(
 			<div id="range-end">
 				<EndCh workbook={workBook} startCh={startChp} startNum={startNum}/>
-				<EndNum workbook={workBook} startCh={startChp} startNum={startNum}/>
+				<EndNum workbook={workBook} endCh={endChp}/>
 			</div>
 		);
 	}
@@ -371,7 +419,7 @@ function Main() {
 	}
 	return (
 		<div id="main" style={{display: "flex",justifyContent:"center"}}>
-			<div id="container" style={{}}>
+			<div id="container">
 				<div id="revert-btn-container"></div>
 				<div id="step1">
 					<H1 value="STEP1"/>
@@ -404,7 +452,7 @@ function showMainPage() {
 function Button({id,cls,value,onclick}) {
 	return(
         <div style={{display:"flex",
-justifyContent:"center",alignItems:"center"}} id="Button">
+justifyContent:"center",alignItems:"center"}} id={id+"-container"}>
 		<button type="button" id={id} onClick={onclick} className={cls}><span style={{fontSize :"1.7em", color :"#ffffff"}}>{value}</span></button></div>
 	);
 }

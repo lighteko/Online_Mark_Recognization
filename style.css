@@ -41,11 +41,15 @@ footer {font-family: 'GmarketSansLight';}
 	margin-bottom: 50px;
 }
 
-#range-chapter-start, #range-number-start {
+#range-chapter-start, #range-number-start, #range-number-end, #range-chapter-end {
 	display: flex;
 	align-items: baseline;
 }
-
+#range-end {
+	margin-top: 10px;
+	display: flex;
+	flex-direction: row;
+}
 #range-start {
 	margin-top: 40px;
 	display: flex;
@@ -60,7 +64,7 @@ select {
 	border-radius: 10px;
 }
 
-select#start-chapter, #start-number {
+select#start-chapter, #start-number, #end-chapter, #end-number {
 	width: 80px;
     margin-left: 20px;
     margin-right: 10px;
@@ -193,4 +197,8 @@ button.sb {
 	display: flex;
     flex-direction: column;
 	justify-content: center;
+}
+
+#range-submit-btn-container {
+	margin-top: 100px;
 }
