@@ -5,7 +5,6 @@ let enterancePageView="block";
 let resultPageView="none";
 let omrCardPageView="none";
 
-
 let answerBox = [];
 let wrongAns = [];
 const card = document.getElementById("card-place");
@@ -22,7 +21,6 @@ function checkNum(event) {
 		event.target.value = event.target.value.slice(2,3);
 	}
 }
-
 // 채점 범위를 입력했을 때, 선택한 문제집의 답지 정보를 입력한 범위 만큼만 추출해서 답안 리스트로 만드는 함수
 function answerParser(jsonData, range) {
 	const Range = range.toUpperCase();
@@ -51,60 +49,6 @@ function answerParser(jsonData, range) {
 	}
     return parsedAns;
 }
-
-// 문제집 선택, omr카드가 포함되는 컴포넌트
-function Workbooks() {	
-	const [wbIndex, setWbIndex] = React.useState();
-	const [showRangeInput, setShowRangeInput] = React.useState("none");
-	let omrDisplay = "none";
-	const onSelect = (event) => {
-		const val = event.target.value;
-		if (val != "") {
-			setWbIndex(val);
-			setShowRangeInput("block");
-		}
-		else {
-			setShowRangeInput("none");
-		}
-	};
-	const MarkRange = () => {
-		return (
-			<div id={wbIndex} style={{display: showRangeInput}}>
-				<input id="select-range" placeholder="채점 범위를 입력해 주세요"/>
-				<button onClick={renderOMR} id="range-submit-btn">확인</button>
-			</div>
-		);
-	}
-	// 채점 범위와 문제집 아이디를 OMR카드 컴포넌트로 보내는 함수
-	function renderOMR() {
-		const rangeText = document.getElementById("select-range").value;
-		if (rangeText != "") {
-			omrDisplay = "block";
-		}
-		else {
-			omrDisplay = "none";
-		}
-		fetch(`./${wbIndex}.json`)
-		.then((response) => {
-			return response.json();
-		})
-		.then((jsonData) => ReactDOM.render(<OMRcard workbook={wbIndex} answers={answerParser(jsonData,rangeText)} display={omrDisplay} />,card));
-	}
-	return (
-		<div id="container">
-			<div id="select-workbooks">
-				<select name="workbooks" onChange={onSelect}>
-					<option value="">채점할 문제집을 선택해 주세요</option>
-					<option value="23xi-mathI3">2023 자이스토리 수학I (고3)</option>
-					<option value="23xi-mathII3">2023 자이스토리 수학II (고3)</option>
-					<option value="23xi-calculus3">2023 자이스토리 미적분 (고3)</option>
-				</select>
-			</div>
-			<MarkRange/>
-		</div>
-	);
-}
-
 // OMR카드 컴포넌트
 function OMRcard({workbook,display,answers}) {
 	const amount = answers.length; 
@@ -139,60 +83,30 @@ function OMRcard({workbook,display,answers}) {
 	);	
 }
 
-//채점하기 버튼 클
-function onSubmitClick() {
-	checkAns().then(()=>renderResult());
-}
-
-async function checkAns() {
-	wrongAns = [];
-	for(let answer of answerBox) {
-		if(answer["Type"]=="O"){
-			let marked = document.querySelector(`${'input[name="'+"omr_cell"+answer["Chapter"]+answer["Number"]+'"]:checked'}`).value;
-			if (marked!=answer["Answer"]) {
-				wrongAns.push(answer["Chapter"]+answer["Number"]);
-			}
-	    }
-		else if(answer["Type"]=="D") {
-			let markedD = document.getElementsByName(`${"omr-dir-cell_"+answer["Chapter"]+answer["Number"]}`)[0].value;
-			if (markedD!=answer["Answer"]) {
-				wrongAns.push(answer["Chapter"]+answer["Number"]);
-			}
-		}
-	}
-}
-
-function Result({marking}) {
-	let [wrong, right] = ["none","none"];
-	marking.length==0 ? [wrong,right]=["none","block"] : [wrong,right]=["block","none"];
-	return (
-		<div id="result">
-			<span id="wrong-result" style={{display: wrong}}>{"채점 결과 " + marking.join(",")+ ` 총 ${marking.length}문항이 틀렸습니다.`}</span>
-			<span id="right-result" style={{display: right}}>채점 결과 모두 맞았습니다!! 축하합니다!!</span>
-		</div>
-	);
-}
-
-function renderResult() {
-    ReactDOM.render(<Result marking={wrongAns}/>,result);
-}
-
-// 합체
-function App() {
-	return (
-	<div id="app">
-		<Enterance/>
-	</div>
-	);
-}
-
-//omr 라디오 버튼
 function Radio({name, value, useAble}) {
 	return(
 	<div id="radio-container" >
 		<input className={"value"+value} id={name+value} type="radio" name={name} value={value} disabled={useAble} style={{margin: "10px",}}/>
 		<label style={{width:"23px"}} htmlFor={name+value}>{"ㅤ"}</label>
 	</div>
+	);
+}
+
+function H1({value}) {
+	return(<h1 style={{marginBottom:"0px",display:"flex",justifyContent:"center"}}>{value}</h1>)
+}
+
+function P({value}) {
+	return(<p style={{marginTop:"0px",lineHeight:"0px"}}>{value}</p>)
+}
+
+function Button({id,cls,value,onclick}) {
+	return(
+        <div style={{display:"flex",justifyContent:"center",alignItems:"center"}} id={id+"-container"}>
+			<button type="button" id={id} onClick={onclick} className={cls}>
+				<span style={{fontSize :"1.7em", color :"#ffffff"}}>{value}</span>
+			</button>
+		</div>
 	);
 }
 
@@ -217,130 +131,113 @@ function Enterance() {
 }
 
 function Main() {
-	const [subject,setSubject] = React.useState("loading");
-	const [workbooks,setWorkbooks] = React.useState({loading:[{id:"loading",value:"loading"}]});
-	const [loading,setLoading] = React.useState(true);
-	const [workBook, setworkBook] = React.useState([]);
-	const [wbLoading,setwbLoading] = React.useState(true);
-	const [focus, setFocus] = React.useState({bg:"#32A37A",bs:"0px 0px 20px #6BE2B8"});
-	const [startChp, setStartChp] = React.useState("");
-	const [startNum, setStartNum] = React.useState("");
-	const [endChp, setEndChp] = React.useState("");
-	const [endNum, setEndNum] = React.useState("");
-	const [maxNum, setMaxNum] = React.useState("1");
-	const [rsloading, setRsloading] = React.useState(true);
-	const [reloading, setReloading] = React.useState(true);
+	const [step1Load,setStep1Load] = React.useState();
+	const [step2Load,setStep2Load] = React.useState();
+	const [step3Load,setStep3Load] = React.useState();
+	function Step1() {
+		function Subject({value, className}) {
+			return(
+				<button type="button" className={className} onClick={onSubjectClick}>{value}</button>
+			);
+		}
+		
+		function ChooseSubject() {
+			return(
+				<div id="sb-container" style={{display:"flex",justifyContent:"center",marginTop:"40px",marginBottom:"50px"}}>
+					<Subject value="국어" className="sb korean"/>
+					<Subject value="수학" className="sb math"/>
+					<Subject value="영어" className="sb english"/>
+					<Subject value="과학" className="sb science"/>
+					<Subject value="사회" className="sb sociology"/>
+				</div>
+			);
+		}
 
-	function H1({value}) {
-		return(<h1 style={{marginBottom:"0px",display:"flex",justifyContent:"center"}}>{value}</h1>)
-	}
-	function P({value}) {
-		return(<p style={{marginTop:"0px",lineHeight:"0px"}}>{value}</p>)
-	}
-	async function onSubjectClick(event) {
-		let classname = event.target.className;
-		await focusing(event);
-		if (event.target.className.includes("focused")) {
-			classname = classname.replace("focused","");
-		}
-		setSubject(classname.slice(3,classname.length));
-		fetch('./workbooks.json').then((response)=>response.json()).then((jsonData) => {
-			console.log(jsonData);
-			setWorkbooks(jsonData);
-			setLoading(false);
-		});
-	}
-	function Subject({value, className}) {
-		return(
-			<button type="button" className={className} onClick={onSubjectClick}>{value}</button>
-		);
-	}
-	function focusing(event) {
-		for (let elem of document.getElementsByClassName("sb")) {
-			if(elem.className == event.target.className) {
-				setFocus({bg:"#32A37A",bs:"0px 0px 20px #6BE2B8"});
-				event.target.style.background = focus["bg"];
-				event.target.style.boxShadow = focus["bs"];
-			}
-			else {
-				setFocus({bg:"",bs:""});
-				event.target.style.background = focus["bg"];
-				event.target.style.boxShadow = focus["bs"];
-			}
-		}
-	}
-	function ChooseSubject() {
-		return(
-			<div id="sb-container" style={{display:"flex",justifyContent:"center",marginTop:"40px",marginBottom:"50px"}}>
-				<Subject value="국어" className="sb korean"/>
-				<Subject value="수학" className="sb math"/>
-				<Subject value="영어" className="sb english"/>
-				<Subject value="과학" className="sb science"/>
-				<Subject value="사회" className="sb sociology"/>
+		return (
+			<div id="step1">
+				<H1 value="STEP1"/>
+				<P value="과목 선택하기"/>
+				<ChooseSubject/>
 			</div>
 		);
 	}
-	async function onSelectWb(event){
-		let wbIndex = event.target.value;
-		let wbData = await (await fetch(`./workbooks/${wbIndex}.json`)).json();
-		setworkBook(wbData);
-		setwbLoading(false);
-	}
-	function WbDropdown({options}) {
-		return(
-			<div id="wbdropdown-container">
-				<select id="wbdropdown" onChange={(event)=>onSelectWb(event)}>
-					<option id="placeholder" value="">문제집을 선택하세요</option>
-					{options.map((option) => (<option value={option["id"]} key={option["id"]}>{option["value"]}</option>))}
-				</select>
-			</div>
-		);
-	}
-	function onRangeStart(event) {
-		setRsloading(false);
-		setStartNum(event.target.value);
-	}
-	function onRangeEnd(event) {
-		setReloading(false);
-		setEndNum(event.target.value);
-	}
-	function RangeStart() {	
-		function StartCh({workbook}) {
-			let chapters = Array.from(new Set(workbook.map((Q)=>(Q["Chapter"]))));
-			return (
-				<div id="range-chapter-start">
-					<h3 style={{width: "40px"}}>시작</h3>
-					<select onChange={(event)=>setStartChp(event.target.value)} id="start-chapter">
-						<option id="placeholder" value="">단원 선택</option>
-						{chapters.map((chapter) => (<option id={chapter} key={chapter} value={chapter}>{chapter}</option>))}
+
+	function Step2() {
+		async function onSelectWb(event){
+			let wbIndex = event.target.value;
+			let wbData = await (await fetch(`./workbooks/${wbIndex}.json`)).json();
+			setworkBook(wbData);
+			setwbLoading(false);
+		}
+
+		function WbDropdown({options}) {
+			return(
+				<div id="wbdropdown-container">
+					<select id="wbdropdown" onChange={(event)=>onSelectWb(event)}>
+						<option id="placeholder" value="">문제집을 선택하세요</option>
+						{options.map((option) => (<option value={option["id"]} key={option["id"]}>{option["value"]}</option>))}
 					</select>
-					<h3 style={{width: "40px"}}>단원</h3>
 				</div>
 			);
 		}
-		function StartNum({workbook, startCh}) {
-			let maxNum;
-			let numbers = [];
-			for (let i=workbook.length-1;i>=0;i--) {
-				if(workbook[i]["Chapter"]==startCh) {
-					maxNum = workbook[i]["Number"];
-					setMaxNum(maxNum);
-					break
+
+		return(
+			<div id="step2">
+				<H1 value="STEP2"/>
+				<P value="문제집 선택하기"/>
+				<WbDropdown options={workbooks[subject]}/>
+			</div>
+		);
+	}
+
+	function Step3() {
+		function onRangeStart(event) {
+			setRsloading(false);
+			setStartNum(event.target.value);
+		}
+	
+		function onRangeEnd(event) {
+			setReloading(false);
+			setEndNum(event.target.value);
+		}
+
+		function RangeStart() {	
+			function StartCh({workbook}) {
+				let chapters = Array.from(new Set(workbook.map((Q)=>(Q["Chapter"]))));
+				return (
+					<div id="range-chapter-start">
+						<h3 style={{width: "40px"}}>시작</h3>
+						<select onChange={(event)=>setStartChp(event.target.value)} id="start-chapter">
+							<option id="placeholder" value="">단원 선택</option>
+							{chapters.map((chapter) => (<option id={chapter} key={chapter} value={chapter}>{chapter}</option>))}
+						</select>
+						<h3 style={{width: "40px"}}>단원</h3>
+					</div>
+				);
+			}
+			function StartNum({workbook, startCh}) {
+				let maxNum;
+				let numbers = [];
+				for (let i=workbook.length-1;i>=0;i--) {
+					if(workbook[i]["Chapter"]==startCh) {
+						maxNum = workbook[i]["Number"];
+						setMaxNum(maxNum);
+						break
+					}
 				}
+				for (let i=1; i<= maxNum; i++) {
+					numbers.push(i);
+				}
+				return (
+					<div id="range-number-start">
+						<select onChange={(event)=>onRangeStart(event)} id="start-number">
+							<option id="placeholder" value="">문제 선택</option>
+							{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
+						</select>
+						<h3 style={{width:"40px"}}>문제</h3>
+					</div>
+				);
 			}
-			for (let i=1; i<= maxNum; i++) {
-				numbers.push(i);
-			}
-			return (
-				<div id="range-number-start">
-					<select onChange={(event)=>onRangeStart(event)} id="start-number">
-						<option id="placeholder" value="">문제 선택</option>
-						{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
-					</select>
-					<h3 style={{width:"40px"}}>문제</h3>
-				</div>
-			);
-		}
 		return (
 			<div id="range-start">
 				<StartCh workbook={workBook} />
@@ -348,8 +245,9 @@ function Main() {
 			</div>
 		);
 	}
-	function RangeEnd() {
-		function EndCh({workbook, startCh, startNum}) {
+	
+		function RangeEnd() {
+			function EndCh({workbook, startCh, startNum}) {
 			const [pickAbleChaps, setPickAbleChaps] = React.useState([]);
 			let chapters = [];
 			async function chapterfinder() {
@@ -408,7 +306,9 @@ function Main() {
 			</div>
 		);
 	}
-	function ChooseRange() {
+		}
+		
+		function ChooseRange() {
 		return(
 			<div id="select-range-container">
 				<RangeStart/>
@@ -416,26 +316,25 @@ function Main() {
 				{reloading==false ? <Button id="range-submit-btn" value="답안지 작성" /> : null}
 			</div>
 		);
+	}	
+		
+		return(
+			<div id="step3">
+				<H1 value="STEP3"/>
+				<P value="범위 선택하기"/>
+				{wbLoading==false ? <ChooseRange/> : null}
+			</div>
+		);
 	}
+
 	return (
 		<div id="main" style={{display: "flex",justifyContent:"center"}}>
 			<div id="container">
 				<div id="revert-btn-container"></div>
-				<div id="step1">
-					<H1 value="STEP1"/>
-					<P value="과목 선택하기"/>
-					<ChooseSubject/>
-				</div>
-				<div id="step2">
-					<H1 value="STEP2"/>
-					<P value="문제집 선택하기"/>
-					{loading==false ? <WbDropdown options={workbooks[subject]}/> : null}
-				</div>
-				<div id="step3">
-					<H1 value="STEP3"/>
-					<P value="범위 선택하기"/>
-					{wbLoading==false ? <ChooseRange/> : null}
-				</div>
+				<Step1/>
+				{step1Load == false ? <Step2/> : null}
+				{step2Load == false ? <Step3/> : null}
+				{step3Load == false ? <submit/> : null}
 			</div>
 		</div>
 	);
@@ -447,14 +346,6 @@ function showMainPage() {
     resultPageView="none";
     omrCardPageView="none";
 	ReactDOM.render(<Main/>,root);
-}
-
-function Button({id,cls,value,onclick}) {
-	return(
-        <div style={{display:"flex",
-justifyContent:"center",alignItems:"center"}} id={id+"-container"}>
-		<button type="button" id={id} onClick={onclick} className={cls}><span style={{fontSize :"1.7em", color :"#ffffff"}}>{value}</span></button></div>
-	);
 }
 
 ReactDOM.render(<App/>,root);
