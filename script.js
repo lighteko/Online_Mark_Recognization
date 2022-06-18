@@ -1,11 +1,6 @@
 // json 읽는법: 단원 chapter,문항번호 number,문제타입 type(d,o(단답식,객관식)),정답 answer
-// 범위 작성 예시 ex) A1-A16
-let mainPageView ="none";
-let enterancePageView="block";
-let resultPageView="none";
-let omrCardPageView="none";
-
 const root = document.getElementById("root");
+const omrcard = document.getElementById("omr-card");
 
 function Radio({name, value, useAble}) {
 	return(
@@ -34,8 +29,6 @@ function Button({id,cls,value,onclick}) {
 	);
 }
 
-
-
 function Enterance() {	
 	return (
 		<div style={{justifyContent :"center"}} id="enterance">
@@ -56,12 +49,11 @@ function Enterance() {
 	);
 }
 
-
 function Main() {
+    const [mainView, setMainView] = React.useState("flex");	
 	const [step1Load,setStep1Load] = React.useState(true);
 	const [step2Load,setStep2Load] = React.useState(true);
 	const [step3Load,setStep3Load] = React.useState(true);
-    const [range,setRange] = React.useState("");
 
 	const [workbooks,setWorkbooks] = React.useState();
 	React.useEffect(async () => {
@@ -116,6 +108,8 @@ function Main() {
 	            .then((data)=>dataUpdate(data));
 		    function dataUpdate(d) {
 			    setWorkbookData(d);
+				window.sessionStorage.setItem("workbookData", JSON.stringify(d));
+				window.sessionStorage.getItem("workbookData");
 			    setStep2Load(false);
 			}	
 		}
@@ -139,25 +133,43 @@ function Main() {
 			</div>
 		);
 	}
-
-	function Step3() {
-		function onRangeStart(event) {
-			setRsloading(false);
-			setStartNum(event.target.value);
-		}
 	
-		function onRangeEnd(event) {
-			setReloading(false);
-			setEndNum(event.target.value);
-		}
+    //step3
+	function Step3() {
+		const [startChapter,setStartChapter] = React.useState();
+		const [startNumber,setStartNumber] = React.useState();
+		const [endChapter,setEndChapter] = React.useState();
+		const [endNumber,setEndNumber] = React.useState();
+		//range states
 
-		function RangeStart() {	
-			function StartCh({workbook}) {
+		const [Sloading,setSLoading] = React.useState(true); //start range loaded boolean
+		const [Eloading,setELoading] = React.useState(true);
+
+		const [sNumber,setsNumber] = React.useState([]); //range number list
+		function RangeStart() {
+			function StartChapter({workbook}) {
 				let chapters = Array.from(new Set(workbook.map((Q)=>(Q["Chapter"]))));
+				function onChange(e) {
+					let maxNum;
+					let numbers = [];
+					setStartChapter(e.target.value);
+					for (let i=workbook.length-1;i>=0;i--) {
+						if(workbook[i]["Chapter"]==e.target.value) {
+							maxNum = workbook[i]["Number"];
+							break
+						}
+					}
+					for (let i=1; i<= maxNum; i++) {
+						numbers.push(i);
+						if (i==maxNum) {
+							setsNumber(numbers);
+						}
+					}
+				}
 				return (
 					<div id="range-chapter-start">
 						<h3 style={{width: "40px"}}>시작</h3>
-						<select onChange={(event)=>setStartChp(event.target.value)} id="start-chapter" selected={startChp}>
+						<select onChange={onChange} id="start-chapter" value={startChapter}>
 							<option id="placeholder" value="">단원 선택</option>
 							{chapters.map((chapter) => (<option id={chapter} key={chapter} value={chapter}>{chapter}</option>))}
 						</select>
@@ -165,22 +177,14 @@ function Main() {
 					</div>
 				);
 			}
-			function StartNum({workbook, startCh}) {
-				let maxNum;
-				let numbers = [];
-				for (let i=workbook.length-1;i>=0;i--) {
-					if(workbook[i]["Chapter"]==startCh) {
-						maxNum = workbook[i]["Number"];
-						setMaxNum(maxNum);
-						break
-					}
-				}
-				for (let i=1; i<= maxNum; i++) {
-					numbers.push(i);
+			function StartNumber({numbers}) {
+				function onChange(e) {
+					setStartNumber(e.target.value);
+					setSLoading(false);
 				}
 				return (
 					<div id="range-number-start">
-						<select onChange={(event)=>onRangeStart(event)} id="start-number">
+						<select onChange={onChange} id="start-number" value={startNumber}>
 							<option id="placeholder" value="">문제 선택</option>
 							{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
 						</select>
@@ -188,86 +192,93 @@ function Main() {
 					</div>
 				);
 			}
-		return (
-			<div id="range-start">
-				<StartCh workbook={workBook} />
-				<StartNum workbook={workBook} startCh={startChp}/>
-			</div>
-		);
-	}
-	
+			return (
+				<div id="range-start">
+					<StartChapter workbook={workbookData}/>
+					<StartNumber numbers={sNumber}/>
+				</div>
+			);
+		}
+
+		const [eNumber,seteNumber] = React.useState([]); // range number list
 		function RangeEnd() {
-			function EndCh({workbook, startCh, startNum}) {
-			const [pickAbleChaps, setPickAbleChaps] = React.useState([]);
-			let chapters = [];
-			async function chapterfinder() {
-				for (let i=0;i<workbook.length;i++) {
-					if (startCh == workbook[i]["Chapter"]) {
-						if (startNum == workbook[i]["Number"]) {
-							chapters.push(workbook[i]["Chapter"]);
+			let chapters = Array.from(new Set(workbookData.map((Q)=>(Q["Chapter"]))));
+			chapters = chapters.slice(chapters.indexOf(startChapter),chapters.length);
+			function EndChapter({workbook, chapters}) {
+				function onChange(e) {
+					let maxNum;
+					let Numbers = [];
+					setEndChapter(e.target.value);
+					if (e.target.value===startChapter) {
+						const startNumberInt = Number(startNumber);
+						const res = sNumber.slice(sNumber.indexOf(startNumberInt),sNumber.length);
+						seteNumber(res);
+					}
+					else {
+						for (let i=workbook.length-1;i>=0;i--) {
+							if(workbook[i]["Chapter"]==e.target.value) {
+								maxNum = workbook[i]["Number"];
+								break
+							}
+						}
+						for (let i=1; i<= maxNum; i++) {
+							Numbers.push(i);
+							if (i==maxNum) {
+								seteNumber(Numbers);
+							}
 						}
 					}
 				}
-			function chaptermaker() {
-				chapters = chapters.slice(1,chapters.length);
-				chapters = Array.from(new Set(chapters));
-				setPickAbleChaps(chapters);
+				return(
+					<div id="range-chapter-end">
+						<h3 style={{width: "40px"}}>끝</h3>
+						<select onChange={onChange} id="end-chapter" value={endChapter}>
+							<option id="placeholder" value="">단원 선택</option>
+							{chapters.map((chapter) => (<option id={chapter} key={chapter} value={chapter}>{chapter}</option>))}
+						</select>
+						<h3 style={{width: "40px"}}>단원</h3>
+					</div>
+				);
 			}
-			
-			chapterfinder().then(()=>chaptermaker());
+				
+			function EndNum({numbers}) {
+				function onChange(e) {
+					setEndNumber(e.target.value);
+					setELoading(false);
+				}
+				return (
+					<div id="range-number-end">
+						<select onChange={onChange} id="end-number" value={endNumber}>
+							<option id="placeholder" value="">문제 선택</option>
+							{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
+						</select>
+						<h3 style={{width:"40px"}}>문제</h3>
+					</div>
+				);
+			}
 			
 			return(
-				<div id="range-number-start">
-					<h3 style={{width: "40px"}}>끝</h3>
-					<select onChange={(event)=>setEndChp(event.target.value)} id="end-chapter">
-						<option id="placeholder" value="">단원 선택</option>
-						{pickAbleChaps.map((chapter) => (<option id={chapter} key={chapter} value={chapter}>{chapter}</option>))}
-					</select>
-					<h3 style={{width: "40px"}}>단원</h3>
+				<div id="range-end">
+					<EndChapter workbook={workbookData} chapters={chapters}/>
+					<EndNum numbers={eNumber}/>
 				</div>
 			);
 		}
-		function EndNum({workbook, endCh}) {
-			let maxNum; 
-			let numbers = [];
-			for (let i=workbook.length-1;i>=0;i--) {
-				if(workbook[i]["Chapter"]==startChp) {
-					maxNum = workbook[i]["Number"];
-					break
-				}
-			}
-			for (let i=1; i<= maxNum; i++) {
-				numbers.push(i);
-			}
-			return (
-				<div id="range-number-end">
-					<select onChange={(event)=>onRangeEnd(event)} id="end-number">
-						<option id="placeholder" value="">문제 선택</option>
-						{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
-					</select>
-					<h3 style={{width:"40px"}}>문제</h3>
-				</div>
-			);
-		}
-		return(
-			<div id="range-end">
-				<EndCh workbook={workBook} startCh={startChp} startNum={startNum}/>
-				<EndNum workbook={workBook} endCh={endChp}/>
-			</div>
-		);
-	}
-		}
-		
+			
 		function ChooseRange() {
-		return(
-			<div id="select-range-container">
-				<RangeStart/>
-				{rsloading==false ? <RangeEnd/> : null}
-				{reloading==false ? <Button id="range-submit-btn" value="답안지 작성" /> : null}
-			</div>
-		);
-	}	
-		
+			function onClick() {
+				window.sessionStorage.setItem("range", [startChapter,startNumber,endChapter,endNumber]);
+				showOMRPage();
+				setMainView("none");
+			}
+			return(
+				<div id="select-range-container">
+					<RangeStart/>
+					{Sloading==false ? <RangeEnd/> : null}
+					{Eloading==false ? <Button id="range-submit-btn" onclick={onClick} value="답안지 작성" /> : null}
+				</div>
+			);
+		}
 		return(
 			<div id="step3">
 				<H1 value="STEP3"/>
@@ -276,31 +287,36 @@ function Main() {
 			</div>
 		);
 	}
-	
+
 	return (
-		<div id="main" style={{display: "flex",justifyContent:"center"}}>
+		<div id="main" style={{display: mainView,justifyContent:"center"}}>
 			<div id="container">
 				<div id="revert-btn-container"></div>
 				<Step1/>
 				{step1Load == false ? <Step2/> : null}
 				{step2Load == false ? <Step3/> : null}
-				{step3Load == false ? <submit/> : null}
 			</div>
 		</div>
 	);
 }
 
+function OMR() {
+	
+}
+
 function showMainPage() {
-	mainPageView="block";
-    enterancePageView="none";
-    resultPageView="none";
-    omrCardPageView="none";
 	ReactDOM.render(<Main/>,root);
+}
+
+function showOMRPage() {
+	ReactDOM.render(<></>,omrcard);
 }
 
 function App() {
 	return <Enterance/>
 }
+
+
 
 // 단답형 입력값을 최대 세자리 수의 양의 정수로 제한하는 함수
 function checkNum(event) {
