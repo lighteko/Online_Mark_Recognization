@@ -24,9 +24,9 @@ function Button({id,cls,value,onclick}) {
 
 function Enterance() {	
 	return (
-		<div style={{justifyContent :"center"}} id="enterance">
-			<div style={{width:"410px",margin:"auto",}} id="illust-container">
-				<img style={{width: "410px"}} src="./img/Tiny student sitting on book pile and reading.jpg" border="0"/>
+		<div style={{justifyContent :"center",marginTop:"30px"}} id="enterance">
+			<div style={{width:"410px",margin:"auto",display:"flex",justifyContent:"center"}} id="illust-container">
+				<img style={{width: "330px"}} src="./img/icon.svg" border="0"/>
 			</div>
 			<div id="text-container">
 				<div style={{display:"flex",justifyContent: "center",}} id="title-text">
