@@ -1,15 +1,8 @@
 // json 읽는법: 단원 chapter,문항번호 number,문제타입 type(d,o(단답식,객관식)),정답 answer
 const root = document.getElementById("root");
 const omrcard = document.getElementById("omr-card");
+const result = document.getElementById("result");
 
-function Radio({name, value, useAble}) {
-	return(
-	<div id="radio-container" >
-		<input className={"value"+value} id={name+value} type="radio" name={name} value={value} disabled={useAble} style={{margin: "10px",}}/>
-		<label style={{width:"23px"}} htmlFor={name+value}>{"ㅤ"}</label>
-	</div>
-	);
-}
 
 function H1({value}) {
 	return(<h1 style={{marginBottom:"0px",display:"flex",justifyContent:"center"}}>{value}</h1>)
@@ -33,7 +26,7 @@ function Enterance() {
 	return (
 		<div style={{justifyContent :"center"}} id="enterance">
 			<div style={{width:"410px",margin:"auto",}} id="illust-container">
-				<img style={{width: "410px"}} src="https://i.ibb.co/Qrw1MgH/Tiny-student-sitting-on-book-pile-and-reading.jpg" alt="Tiny-student-sitting-on-book-pile-and-reading" border="0"/>
+				<img style={{width: "410px"}} src="./img/Tiny student sitting on book pile and reading.jpg" border="0"/>
 			</div>
 			<div id="text-container">
 				<div style={{display:"flex",justifyContent: "center",}} id="title-text">
@@ -42,8 +35,11 @@ function Enterance() {
 				<p style={{fontSize:"1.3em"}}>채점이 귀찮으시다고요?</p>
 				<p>OMR이 자동으로 문제집을 채점해 드립니다.<br/>지금 바로 시작하세요!!</p>
 			</div>
-			<div style={{display :"flex",justifyContent: "center",marginTop:"200px"}} id="start-btn-container">
-				<Button onclick={showMainPage} id="start" value={"시작하기"} />
+			<div style={{display :"flex",flexDirection:"column", justifyContent: "center",marginTop:"150px"}} id="start-btn-container">
+				<Button onclick={showMainPage} id="start" value={"시작하기"}/>
+				<div style={{marginTop:"10px"}}>
+				<Button onclick={()=>(window.open("https://forms.gle/8pH3hckDVSkbTkgd9", '_blank'))} id="add" value={"문제집 추가 신청"} />
+				</div>
 			</div>
 		</div>
 	);
@@ -291,7 +287,6 @@ function Main() {
 	return (
 		<div id="main" style={{display: mainView,justifyContent:"center"}}>
 			<div id="container">
-				<div id="revert-btn-container"></div>
 				<Step1/>
 				{step1Load == false ? <Step2/> : null}
 				{step2Load == false ? <Step3/> : null}
@@ -300,8 +295,160 @@ function Main() {
 	);
 }
 
+// OMR카드 컴포넌트
 function OMR() {
+	const [workbook, setWorkbook] = React.useState([]);
+	const [range,setRange] = React.useState([]);
+	const [omrView, setOmrView] = React.useState("flex");
+	const [cells, setCells] = React.useState([]);
 	
+	// 채점 범위를 입력했을 때, 선택한 문제집의 답지 정보를 입력한 범위 만큼만 추출해서 답안 리스트로 만드는 함수
+	function answerParser(range,jsonData) {
+		let keepAppend = false;
+		let appendStarted = false;
+		const [startCh,startNum,endCh,endNum] = range;
+		let parsedAns = [];
+		let answersList = [];
+		for (let i = 0; i < jsonData.length+1; i++) {
+			if(startCh == jsonData[i]["Chapter"] && startNum == jsonData[i]["Number"]){
+				keepAppend = true;
+				appendStarted = true;
+			}
+			else if (endCh == jsonData[i]["Chapter"] && endNum == jsonData[i]["Number"]) {
+				keepAppend = false;
+				parsedAns.push(jsonData[i]);
+			}
+			if(keepAppend == true) {
+  	        	parsedAns.push(jsonData[i]);
+			}
+			if (appendStarted==true && keepAppend==false) {
+				setCells(parsedAns);
+				break
+			}
+		}
+	}
+	React.useEffect(() => {
+		let range = window.sessionStorage.getItem("range");
+		range = range.split(",");
+		let jsonData = window.sessionStorage.getItem("workbookData");
+		jsonData = JSON.parse(jsonData);
+		setWorkbook(jsonData);
+		answerParser(range, jsonData);
+	},[]);
+
+	function Mark({name, value}) {
+		return(
+		<div id="radio-container" >
+			<input className={"mark value"+value} id={name+value} type="radio" name={name} value={value} style={{margin: "10px",}} />
+			<label style={{width:"23px"}} htmlFor={name+value}>{"ㅤ"}</label>
+		</div>
+		);
+	}
+	
+	function OmrCell({Num,Type}) {
+		function Objective({Num}) {
+			return (
+				<div id="objective" style={{display:"flex"}}>
+					<Mark name={"cell"+Num} value="1"/>
+					<Mark name={"cell"+Num} value="2"/>
+					<Mark name={"cell"+Num} value="3"/>
+					<Mark name={"cell"+Num} value="4"/>
+					<Mark name={"cell"+Num} value="5"/>
+				</div>
+			);
+		}
+		function Directive({Num}) {
+			function onInput(event) {
+				event.target.value = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+				event.target.value = event.target.value.slice(0,3);
+				if (event.target.value.length >=2 && event.target.value[0]==0) {
+					event.target.value = event.target.value.slice(1,3);
+				}
+				else if (event.target.value.length >=2 && event.target.value[0]==0 && event.target.value[1]==0) {
+					event.target.value = event.target.value.slice(2,3);
+				}
+			}
+			return(
+				<>
+					<span id="input-text" style={{color: "#035A58",marginRight:"10px",marginLeft:"50px"}}>단답형</span>
+					<input style={{width:"50px",textAlign:"center",borderRadius:"5px",border:"0px",background:"#CDEADD",color:"#035A58"}} type="text" onInput={onInput} name={"dir-cell"+Num}/>
+				</>
+			);
+		}
+		return (
+		<div className="omr-block" id={"omr-block"+Num} style={{display: "flex",}}>
+			<div id="omr-container" style={{display:"flex", alignItems: "center"}}>
+				<span style={{width: "50px",fontFamily: "GmarketSansBold", color: "#035A58"}}>{Num}</span>
+				{Type==="O" ? <Objective Num={Num}/> : <Directive Num={Num}/>}
+			</div>
+		</div>
+		);
+	}
+	
+	function OMRblocks() {
+		function checkAnswer() {
+			let wrongMarks = [];
+			let counter = 0;
+			for (let cell of cells) {
+				if (cell["Type"]==="D") {
+					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+cell["Number"]}"]`).value;
+					if (mark != cell["Answer"]) {
+						wrongMarks.push(String(cell["Chapter"]+cell["Number"]))
+					}
+				}
+				else {
+					let mark = document.querySelector(`input[name="cell${cell["Chapter"]+cell["Number"]}"]`).value;
+					if (mark != cell["Answer"]) {
+						wrongMarks.push(String(cell["Chapter"]+cell["Number"]))
+					}
+				}
+				if (counter === cells.length-1) {
+					window.sessionStorage.setItem("wrongAnswers", wrongMarks);
+					return 
+				}
+				counter += 1;
+			}
+		}
+		function onClick() {
+			checkAnswer();
+			showResultPage();
+			setOmrView("none");
+		}
+		const Blocks = cells.map((cell) => <OmrCell key={cell["Chapter"] + cell["Number"]} Num={cell["Chapter"] + cell["Number"]} Type={cell["Type"]}/>);
+		return (
+			<div style={{display: omrView, flexDirection:"column"}}>
+				<div id="top-bar" style={{display: "flex",zIndex:"3",background:"#ffffff",height: "auto",position:"absolute",left:"0px",top:"0px"}}>
+					<h2 style={{width: "70px",margin:"0px",lineHeight:"55px",marginLeft:"30px"}}>OMR</h2>
+				</div>
+			    <div id="omr-blocks">{Blocks}</div>
+			    <Button onclick={onClick} id="check" value="채점하기"/>
+			</div>
+		);
+	}
+	return <OMRblocks/>
+}
+
+function Result() {
+	let wrongAns = window.sessionStorage.getItem("wrongAnswers");
+	wrongAns = wrongAns.split(",");
+	const length = wrongAns.length;
+	return (
+		<div id="result-container">
+			<div id="top-bar" style={{display: "flex",zIndex:"3",background:"#ffffff",height: "auto",position:"absolute",left:"0px",top:"0px"}}>
+				<h2 style={{width: "70px",margin:"0px",lineHeight:"55px",marginLeft:"30px"}}>Result</h2>
+			</div>
+			<div style={{marginTop:"200px",display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
+			{wrongAns.map((Ans)=> (<span key={Ans} style={{fontSize:"2em",fontFamily:"GmarketSansBold",height:"fit-content",marginLeft:"3px",marginRight:"3px"}}>{Ans}</span>))}
+			</div>
+			<div style={{display:"flex",justifyContent:"center",marginBottom:"200px"}}>
+			{wrongAns.length === 0 ? <h2 style={{display:"flex",justifyContent:"center"}}>틀린 문제가 없습니다!!</h2> : <h2 style={{display:"flex",justifyContent:"center"}}>총 {length} 문제를 틀렸습니다</h2>}
+			</div>
+			<Button id="refresh" value="처음으로" onclick={()=>(window.location.reload())}/>
+			<div style={{marginTop:"20px"}}>
+			<Button id="feedback" value="피드백 하기" onclick={()=>(window.open("https://forms.gle/2MEyBs1tDmJ6adA77", '_blank'))}/>
+			</div>
+		</div>
+	);
 }
 
 function showMainPage() {
@@ -309,88 +456,11 @@ function showMainPage() {
 }
 
 function showOMRPage() {
-	ReactDOM.render(<></>,omrcard);
+	ReactDOM.render(<OMR/>,omrcard);
 }
 
-function App() {
-	return <Enterance/>
+function showResultPage() {
+	ReactDOM.render(<Result/>,result);
 }
 
-
-
-// 단답형 입력값을 최대 세자리 수의 양의 정수로 제한하는 함수
-function checkNum(event) {
-	event.target.value = event.target.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
-	event.target.value = event.target.value.slice(0,3);
-	if (event.target.value.length >=2 && event.target.value[0]==0) {
-		event.target.value = event.target.value.slice(1,3);
-	}
-	else if (event.target.value.length >=2 && event.target.value[0]==0 && event.target.value[1]==0) {
-		event.target.value = event.target.value.slice(2,3);
-	}
-}
-
-// 채점 범위를 입력했을 때, 선택한 문제집의 답지 정보를 입력한 범위 만큼만 추출해서 답안 리스트로 만드는 함수
-function answerParser(jsonData, range) {
-	const Range = range.toUpperCase();
-	let keepAppend = false;
-	let appendStarted = false;
-    const [start,end] = Range.split('-');
-	const [[startCh,startNum],[endCh,endNum]] = [start.split('.'),end.split('.')];
-	let parsedAns = [];
-	for (let i = 0; i < jsonData.length+1; i++) {
-		if(startCh == jsonData[i]["Chapter"] && startNum == jsonData[i]["Number"]){
-			keepAppend = true;
-			appendStarted = true;
-		}
-		else if (endCh == jsonData[i]["Chapter"] && endNum == jsonData[i]["Number"]) {
-			keepAppend = false;
-			parsedAns.push(jsonData[i]);
-		}
-		if(keepAppend == true) {
-            parsedAns.push(jsonData[i]);	
-		}
-		if (appendStarted==true && keepAppend==false) {
-			break
-		}
-	answerBox = [];
-	answerBox = parsedAns;
-	}
-    return parsedAns;
-}
-
-// OMR카드 컴포넌트
-function OMRcard({workbook,display,answers}) {
-	const amount = answers.length; 
-	function OmrCell({Num,Type}) {
-		return (
-		<div id={"omr-block"+Num} style={{display: "flex",marginTop: "10px", marginBottom: "10px"}}>
-			<span style={{width: "50px"}}>{Num}</span>
-			<div id="radios" style={{display:"flex"}}>
-				<Radio name={"omr_cell"+Num} value="1" useAble={Type=="O"? false : true}/>
-				<Radio name={"omr_cell"+Num} value="2" useAble={Type=="O"? false : true}/>
-				<Radio name={"omr_cell"+Num} value="3" useAble={Type=="O"? false : true}/>
-				<Radio name={"omr_cell"+Num} value="4" useAble={Type=="O"? false : true}/>
-				<Radio name={"omr_cell"+Num} value="5" useAble={Type=="O"? false : true}/>
-			</div>
-			<input style={{width:"50px"}} type="text" onInput={checkNum} name={"omr-dir-cell_"+Num} disabled={Type=="O"? true : false} placeholder="단답형"/>
-		</div>
-		);
-	}
-	const OMRblocks = () => {
-		const Blocks = answers.map((answer) => <OmrCell key={answer["Chapter"] + answer["Number"]} Num={answer["Chapter"] + answer["Number"]} Type={answer["Type"]}/>);
-		return (
-			<div id="omr-card">
-			    <div id="omr-blocks">{Blocks}</div>
-			    <button onClick={onSubmitClick} id="submit">채점하기</button>
-			</div>
-		);
-	}
-	return (
-		<div style={{display:display}} id={workbook+"omr-card"}>
-            <OMRblocks/>
-		</div>
-	);	
-}
-
-ReactDOM.render(<App/>,root);
+ReactDOM.render(<Enterance/>,root);
