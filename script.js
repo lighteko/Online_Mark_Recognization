@@ -246,7 +246,7 @@ function Main() {
 					<div id="range-number-end">
 						<select onChange={onChange} id="end-number" value={endNumber}>
 							<option id="placeholder" value="">문제 선택</option>
-							{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
+							{numbers.slice(1,numbers.length).map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
 						</select>
 						<h3 style={{width:"40px"}}>문제</h3>
 					</div>
