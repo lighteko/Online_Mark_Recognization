@@ -338,10 +338,10 @@ function OMR() {
 
 	function Mark({name, value}) {
 		return(
-		<div id="radio-container" >
+		<>
 			<input className={"mark value"+value} id={name+value} type="radio" name={name} value={value} style={{margin: "10px",}} />
 			<label style={{width:"23px"}} htmlFor={name+value}>{"ㅤ"}</label>
-		</div>
+		</>
 		);
 	}
 	
@@ -391,13 +391,17 @@ function OMR() {
 			let counter = 0;
 			for (let cell of cells) {
 				if (cell["Type"]==="D") {
-					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+cell["Number"]}"]`).value;
+					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+cell["Number"]}"]:`).value;
+					console.log("answer: ",cell["Answer"]);
+					console.log("mark: ",mark);
 					if (mark != cell["Answer"]) {
 						wrongMarks.push(String(cell["Chapter"]+cell["Number"]))
 					}
 				}
 				else {
-					let mark = document.querySelector(`input[name="cell${cell["Chapter"]+cell["Number"]}"]`).value;
+					let mark = document.querySelector(`input[name="cell${cell["Chapter"]+cell["Number"]}"]:checked`).value;
+					console.log("answer: ",cell["Answer"]);
+					console.log("mark: ",mark);
 					if (mark != cell["Answer"]) {
 						wrongMarks.push(String(cell["Chapter"]+cell["Number"]))
 					}
@@ -431,7 +435,8 @@ function OMR() {
 function Result() {
 	let wrongAns = window.sessionStorage.getItem("wrongAnswers");
 	wrongAns = wrongAns.split(",");
-	const length = wrongAns.length;
+	let length;
+	wrongAns[0] === '' ? length = 0 : length = wrongAns.length;
 	return (
 		<div id="result-container">
 			<div id="top-bar" style={{display: "flex",zIndex:"3",background:"#ffffff",height: "auto",position:"absolute",left:"0px",top:"0px"}}>
@@ -441,7 +446,7 @@ function Result() {
 			{wrongAns.map((Ans)=> (<span key={Ans} style={{fontSize:"2em",fontFamily:"GmarketSansBold",height:"fit-content",marginLeft:"3px",marginRight:"3px"}}>{Ans}</span>))}
 			</div>
 			<div style={{display:"flex",justifyContent:"center",marginBottom:"200px"}}>
-			{wrongAns.length === 0 ? <h2 style={{display:"flex",justifyContent:"center"}}>틀린 문제가 없습니다!!</h2> : <h2 style={{display:"flex",justifyContent:"center"}}>총 {length} 문제를 틀렸습니다</h2>}
+			{length == 0 ? <h2 style={{display:"flex",justifyContent:"center"}}>틀린 문제가 없습니다!!</h2> : <h2 style={{display:"flex",justifyContent:"center"}}>총 {length} 문제를 틀렸습니다</h2>}
 			</div>
 			<Button id="refresh" value="처음으로" onclick={()=>(window.location.reload())}/>
 			<div style={{marginTop:"20px"}}>
