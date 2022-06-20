@@ -391,7 +391,7 @@ function OMR() {
 			let counter = 0;
 			for (let cell of cells) {
 				if (cell["Type"]==="D") {
-					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+cell["Number"]}"]:`).value;
+					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+cell["Number"]}"]`).value;
 					console.log("answer: ",cell["Answer"]);
 					console.log("mark: ",mark);
 					if (mark != cell["Answer"]) {
