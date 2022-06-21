@@ -282,3 +282,7 @@ input[type="text"]:focus {
 #revert-btn:active {
 	opacity: 0.3;
 }
+
+#kakao {
+	margin-top: 20px;
+}
