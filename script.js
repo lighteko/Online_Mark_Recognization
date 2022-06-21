@@ -29,8 +29,9 @@ function Enterance() {
 				<img style={{width: "330px"}} src="./img/icon.svg" border="0"/>
 			</div>
 			<div id="text-container">
-				<div style={{display:"flex",justifyContent: "center",}} id="title-text">
+				<div style={{display:"flex",alignItems: "center",flexDirection:"column"}} id="title-text">
 					<h1 style={{lineHeight:"30px"}}>ONLINE<br/>MARKING READER</h1>
+					<h5>Ver. 1.0.0</h5>
 				</div>
 				<p style={{fontSize:"1.3em"}}>채점이 귀찮으시다고요?</p>
 				<p>OMR이 자동으로 문제집을 채점해 드립니다.<br/>지금 바로 시작하세요!!</p>
@@ -387,27 +388,27 @@ function OMR() {
 	
 	function OMRblocks() {
 		function checkAnswer() {
-			let wrongMarks = [];
 			let counter = 0;
 			for (let cell of cells) {
 				if (cell["Type"]==="D") {
 					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+cell["Number"]}"]`).value;
 					console.log("answer: ",cell["Answer"]);
 					console.log("mark: ",mark);
+											document.querySelector(`#omr-block${cell["Chapter"]+cell["Number"]}`).style.background = "#A7CEC7";
 					if (mark != cell["Answer"]) {
-						wrongMarks.push(String(cell["Chapter"]+cell["Number"]))
+						document.querySelector(`#omr-block${cell["Chapter"]+cell["Number"]}`).style.background = "#DF6565";
 					}
 				}
 				else {
 					let mark = document.querySelector(`input[name="cell${cell["Chapter"]+cell["Number"]}"]:checked`).value;
+																document.querySelector(`#omr-block${cell["Chapter"]+cell["Number"]}`).style.background = "#A7CEC7";
 					console.log("answer: ",cell["Answer"]);
 					console.log("mark: ",mark);
 					if (mark != cell["Answer"]) {
-						wrongMarks.push(String(cell["Chapter"]+cell["Number"]))
+						document.querySelector(`#omr-block${cell["Chapter"]+cell["Number"]}`).style.background = "#DF6565";
 					}
 				}
 				if (counter === cells.length-1) {
-					window.sessionStorage.setItem("wrongAnswers", wrongMarks);
 					return 
 				}
 				counter += 1;
@@ -415,8 +416,6 @@ function OMR() {
 		}
 		function onClick() {
 			checkAnswer();
-			showResultPage();
-			setOmrView("none");
 		}
 		const Blocks = cells.map((cell) => <OmrCell key={cell["Chapter"] + cell["Number"]} Num={cell["Chapter"] + cell["Number"]} Type={cell["Type"]}/>);
 		return (
