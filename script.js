@@ -425,6 +425,12 @@ function OMR() {
 				</div>
 			    <div id="omr-blocks">{Blocks}</div>
 			    <Button onclick={onClick} id="check" value="채점하기"/>
+				<div style={{marginTop:"10px"}}>
+					<Button id="refresh" value="처음으로" onclick={()=>(window.location.reload())}/>
+				</div>
+				<div style={{marginTop:"10px"}}>
+					<Button id="feedback" value="피드백 하기" onclick={()=>(window.open("https://forms.gle/2MEyBs1tDmJ6adA77", '_blank'))}/>
+				</div>
 			</div>
 		);
 	}
