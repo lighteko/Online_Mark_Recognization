@@ -420,9 +420,6 @@ function OMR() {
 		const Blocks = cells.map((cell) => <OmrCell key={cell["Chapter"] + cell["Number"]} Num={cell["Chapter"] + cell["Number"]} Type={cell["Type"]}/>);
 		return (
 			<div style={{display: omrView, flexDirection:"column"}}>
-				<div id="top-bar" style={{display: "flex",zIndex:"3",background:"#ffffff",height: "auto",position:"absolute",left:"0px",top:"0px"}}>
-					<h2 style={{width: "70px",margin:"0px",lineHeight:"55px",marginLeft:"30px"}}>OMR</h2>
-				</div>
 			    <div id="omr-blocks">{Blocks}</div>
 			    <Button onclick={onClick} id="check" value="채점하기"/>
 				<div style={{marginTop:"10px"}}>
