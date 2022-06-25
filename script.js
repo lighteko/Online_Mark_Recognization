@@ -401,7 +401,7 @@ function OMR() {
 				}
 				else {
 					let mark = document.querySelector(`input[name="cell${cell["Chapter"]+"-"+cell["Number"]}"]:checked`).value;
-					document.querySelctor(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#A7CEC7";
+					document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#A7CEC7";
 					if (mark != cell["Answer"]) {
 						document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#DF6565";
 					}
