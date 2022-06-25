@@ -379,7 +379,7 @@ function OMR() {
 		return (
 		<div className="omr-block" id={"omr-block"+Num} style={{display: "flex",}}>
 			<div id="omr-container" style={{display:"flex", alignItems: "center"}}>
-				<span style={{width: "50px",fontFamily: "GmarketSansBold", color: "#035A58"}}>{Num}</span>
+				<span style={{width: "60px",fontFamily: "GmarketSansBold", color: "#035A58",marginRight:"30px"}}>{Num}</span>
 				{Type==="O" ? <Objective Num={Num}/> : <Directive Num={Num}/>}
 			</div>
 		</div>
@@ -391,21 +391,19 @@ function OMR() {
 			let counter = 0;
 			for (let cell of cells) {
 				if (cell["Type"]==="D") {
-					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+cell["Number"]}"]`).value;
+					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+"-"+cell["Number"]}"]`).value;
 					console.log("answer: ",cell["Answer"]);
 					console.log("mark: ",mark);
-											document.querySelector(`#omr-block${cell["Chapter"]+cell["Number"]}`).style.background = "#A7CEC7";
+					document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#A7CEC7";
 					if (mark != cell["Answer"]) {
-						document.querySelector(`#omr-block${cell["Chapter"]+cell["Number"]}`).style.background = "#DF6565";
+						document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#DF6565";
 					}
 				}
 				else {
-					let mark = document.querySelector(`input[name="cell${cell["Chapter"]+cell["Number"]}"]:checked`).value;
-																document.querySelector(`#omr-block${cell["Chapter"]+cell["Number"]}`).style.background = "#A7CEC7";
-					console.log("answer: ",cell["Answer"]);
-					console.log("mark: ",mark);
+					let mark = document.querySelector(`input[name="cell${cell["Chapter"]+"-"+cell["Number"]}"]:checked`).value;
+					document.querySelctor(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#A7CEC7";
 					if (mark != cell["Answer"]) {
-						document.querySelector(`#omr-block${cell["Chapter"]+cell["Number"]}`).style.background = "#DF6565";
+						document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#DF6565";
 					}
 				}
 				if (counter === cells.length-1) {
@@ -417,7 +415,7 @@ function OMR() {
 		function onClick() {
 			checkAnswer();
 		}
-		const Blocks = cells.map((cell) => <OmrCell key={cell["Chapter"] + cell["Number"]} Num={cell["Chapter"] + cell["Number"]} Type={cell["Type"]}/>);
+		const Blocks = cells.map((cell) => <OmrCell key={cell["Chapter"] + cell["Number"]} Num={cell["Chapter"]+"-"+cell["Number"]} Type={cell["Type"]}/>);
 		return (
 			<div style={{display: omrView, flexDirection:"column"}}>
 			    <div id="omr-blocks">{Blocks}</div>
@@ -432,30 +430,6 @@ function OMR() {
 		);
 	}
 	return <OMRblocks/>
-}
-
-function Result() {
-	let wrongAns = window.sessionStorage.getItem("wrongAnswers");
-	wrongAns = wrongAns.split(",");
-	let length;
-	wrongAns[0] === '' ? length = 0 : length = wrongAns.length;
-	return (
-		<div id="result-container">
-			<div id="top-bar" style={{display: "flex",zIndex:"3",background:"#ffffff",height: "auto",position:"absolute",left:"0px",top:"0px"}}>
-				<h2 style={{width: "70px",margin:"0px",lineHeight:"55px",marginLeft:"30px"}}>Result</h2>
-			</div>
-			<div style={{marginTop:"200px",display:"flex",flexWrap:"wrap",justifyContent:"center"}}>
-			{wrongAns.map((Ans)=> (<span key={Ans} style={{fontSize:"2em",fontFamily:"GmarketSansBold",height:"fit-content",marginLeft:"3px",marginRight:"3px"}}>{Ans}</span>))}
-			</div>
-			<div style={{display:"flex",justifyContent:"center",marginBottom:"200px"}}>
-			{length == 0 ? <h2 style={{display:"flex",justifyContent:"center"}}>틀린 문제가 없습니다!!</h2> : <h2 style={{display:"flex",justifyContent:"center"}}>총 {length} 문제를 틀렸습니다</h2>}
-			</div>
-			<Button id="refresh" value="처음으로" onclick={()=>(window.location.reload())}/>
-			<div style={{marginTop:"20px"}}>
-			<Button id="feedback" value="피드백 하기" onclick={()=>(window.open("https://forms.gle/2MEyBs1tDmJ6adA77", '_blank'))}/>
-			</div>
-		</div>
-	);
 }
 
 function showMainPage() {
