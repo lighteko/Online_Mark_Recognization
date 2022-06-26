@@ -17,12 +17,28 @@
 		{
 			"id":"23xi-calculus3",
 			"value":"2023 자이스토리 미적분 (고3)"
+		},
+		{
+			"id":"23ruleOf4-mathIS1",
+			"value":"2023 4의 규칙 수학I Season1(준비중)"
+		},
+		{
+			"id":"23ruleOf4-mathIIS1",
+			"value":"2023 4의 규칙 수학II Season1(준비중)"
+		},
+		{
+			"id":"23ruleOf4-calculusS1",
+			"value":"2023 4의 규칙 미적분 Season1(준비중)"
 		}
 	],
 	"english": [
 		{
-			"id":"2023ebs1English",
+			"id":"2023ebsEnglish",
 			"value":"2023 EBS 수능특강 영어(준비중)"
+		},
+		{
+			"id":"2023ebsEnglishReading",
+			"value":"2023 EBS 수능특강 영어독해연습(준비중)"
 		}
 	],
 	"science": [
