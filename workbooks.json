@@ -2,7 +2,7 @@
 	"korean": [
 		{
 			"id":"23xi-koreanLit",
-			"value":"2023 자이스토리 수능국어 문학 실전"
+			"value":"2023 자이스토리 수능국어 문학 실전(준비중)"
 		}
 	],
 	"math": [
@@ -22,31 +22,31 @@
 	"english": [
 		{
 			"id":"2023ebs1English",
-			"value":"2023 EBS 수능특강 영어"
+			"value":"2023 EBS 수능특강 영어(준비중)"
 		}
 	],
 	"science": [
 		{
 			"id":"23xi-physicsI",
-			"value": "2023 자이스토리 물리학I"
+			"value": "2023 자이스토리 물리학I(준비중)"
 		},
 		{
 			"id":"23xi-chemistryI",
-			"value":"2023 자이스토리 화학I"
+			"value":"2023 자이스토리 화학I(준비중)"
 		},
 		{
 			"id":"23xi-biologyI",
-			"value":"2023 자이스토리 생명과학I"
+			"value":"2023 자이스토리 생명과학I(준비중)"
 		},
 		{
 			"id":"23xi-earthI",
-			"value":"2023 자이스토리 지구과학I"
+			"value":"2023 자이스토리 지구과학I(준비중)"
 		}
 	],
 	"sociology": [
 		{
-			"id":"unset",
-			"value":"unset"
+			"id":"(준비중)",
+			"value":"(준비중)"
 		}
 	]
 }
