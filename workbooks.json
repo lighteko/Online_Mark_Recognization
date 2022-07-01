@@ -1,26 +1,34 @@
 {
 	"korean": [
 		{
-			"id":"23xi-koreanLit",
-			"value":"2023 자이스토리 수능국어 문학 실전(준비중)"
+			"id":"23ebsKoreanLiterature",
+			"value":"2023 EBS 수능특강 문학  (준비중)"
 		}
 	],
 	"math": [
 		{
-			"id":"23xi-mathI3",
-			"value":"2023 자이스토리 수학I (고3)"
+			"id":"22xi-mathI3",
+			"value":"2022 자이스토리 수학I (고3)"
 		},
 		{
-			"id":"23xi-mathII3",
-			"value":"2023 자이스토리 수학II (고3)"
+			"id":"22xi-mathII3",
+			"value":"2022 자이스토리 수학II (고3)"
 		},
 		{
-			"id":"23xi-calculus3",
-			"value":"2023 자이스토리 미적분 (고3)"
+			"id":"22xi-calculus3",
+			"value":"2022 자이스토리 미적분 (고3)"
+		},
+		{
+			"id":"22xi-prob&stat3",
+			"value":"2022 자이스토리 확률과 통계 (고3) (준비중)"
+		},
+		{
+			"id":"22xi-geometry3",
+			"value":"2022 자이스토리 기하 (고3) (준비중)"
 		},
 		{
 			"id":"23ruleOf4-mathIS1",
-			"value":"2023 4의 규칙 수학I Season1(준비중)"
+			"value":"2023 4의 규칙 수학I Season1"
 		},
 		{
 			"id":"23ruleOf4-mathIIS1",
