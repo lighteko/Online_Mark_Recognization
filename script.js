@@ -31,7 +31,7 @@ function Enterance() {
 			<div id="text-container">
 				<div style={{display:"flex",alignItems: "center",flexDirection:"column"}} id="title-text">
 					<h1 style={{lineHeight:"30px"}}>ONLINE<br/>MARKING READER</h1>
-					<h5>Ver. 1.0.0</h5>
+					<h5>Ver. 1.0.1</h5>
 				</div>
 				<p style={{fontSize:"1.3em"}}>채점이 귀찮으시다고요?</p>
 				<p>OMR이 자동으로 문제집을 채점해 드립니다.<br/>지금 바로 시작하세요!!</p>

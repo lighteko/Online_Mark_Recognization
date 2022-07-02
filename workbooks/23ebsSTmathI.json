@@ -1,0 +1,1070 @@
+[
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "1"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "2"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "4"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "5"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "6"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "7"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "8"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "D",
+		"Answer": "4",
+		"Number": "9"
+	},
+	{
+		"Chapter": "01L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "10"
+	},
+	{
+		"Chapter": "01L1",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "1"
+	},
+	{
+		"Chapter": "01L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "2"
+	},
+	{
+		"Chapter": "01L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "3"
+	},
+	{
+		"Chapter": "01L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "4"
+	},
+	{
+		"Chapter": "01L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "5"
+	},
+	{
+		"Chapter": "01L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "1"
+	},
+	{
+		"Chapter": "01L2",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "2"
+	},
+	{
+		"Chapter": "01L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "01L2",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "4"
+	},
+	{
+		"Chapter": "01L2",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "5"
+	},
+	{
+		"Chapter": "01L2",
+		"Type": "D",
+		"Answer": "8",
+		"Number": "6"
+	},
+	{
+		"Chapter": "01L2",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "7"
+	},
+	{
+		"Chapter": "01L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "8"
+	},
+	{
+		"Chapter": "01L3",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "1"
+	},
+	{
+		"Chapter": "01L3",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "2"
+	},
+	{
+		"Chapter": "01L3",
+		"Type": "D",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "01L3",
+		"Type": "D",
+		"Answer": "512",
+		"Number": "4"
+	},
+	{
+		"Chapter": "01L3",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "5"
+	},
+	{
+		"Chapter": "01L3",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "6"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "1"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "2"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "3"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "4"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "D",
+		"Answer": "6",
+		"Number": "5"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "6"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "7"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "8"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "9"
+	},
+	{
+		"Chapter": "02L0",
+		"Type": "D",
+		"Answer": "16",
+		"Number": "10"
+	},
+	{
+		"Chapter": "02L1",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "1"
+	},
+	{
+		"Chapter": "02L1",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "2"
+	},
+	{
+		"Chapter": "02L1",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "02L1",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "4"
+	},
+	{
+		"Chapter": "02L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "5"
+	},
+	{
+		"Chapter": "02L2",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "1"
+	},
+	{
+		"Chapter": "02L2",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "2"
+	},
+	{
+		"Chapter": "02L2",
+		"Type": "D",
+		"Answer": "5",
+		"Number": "3"
+	},
+	{
+		"Chapter": "02L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "4"
+	},
+	{
+		"Chapter": "02L2",
+		"Type": "D",
+		"Answer": "8",
+		"Number": "5"
+	},
+	{
+		"Chapter": "02L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "6"
+	},
+	{
+		"Chapter": "02L2",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "7"
+	},
+	{
+		"Chapter": "02L2",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "8"
+	},
+	{
+		"Chapter": "02L3",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "1"
+	},
+	{
+		"Chapter": "02L3",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "2"
+	},
+	{
+		"Chapter": "02L3",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "02L3",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "4"
+	},
+	{
+		"Chapter": "02L3",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "5"
+	},
+	{
+		"Chapter": "02L3",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "6"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "1"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "2"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "4"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "5"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "6"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "7"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "8"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "9"
+	},
+	{
+		"Chapter": "03L0",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "10"
+	},
+	{
+		"Chapter": "03L1",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "1"
+	},
+	{
+		"Chapter": "03L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "2"
+	},
+	{
+		"Chapter": "03L1",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "3"
+	},
+	{
+		"Chapter": "03L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "4"
+	},
+	{
+		"Chapter": "03L1",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "5"
+	},
+	{
+		"Chapter": "03L1",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "6"
+	},
+	{
+		"Chapter": "03L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "7"
+	},
+	{
+		"Chapter": "03L1",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "8"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "1"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "2"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "3"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "4"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "5"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "D",
+		"Answer": "9",
+		"Number": "6"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "D",
+		"Answer": "31",
+		"Number": "7"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "D",
+		"Answer": "30",
+		"Number": "8"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "9"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "D",
+		"Answer": "3",
+		"Number": "10"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "11"
+	},
+	{
+		"Chapter": "03L2",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "12"
+	},
+	{
+		"Chapter": "03L3",
+		"Type": "D",
+		"Answer": "3",
+		"Number": "1"
+	},
+	{
+		"Chapter": "03L3",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "2"
+	},
+	{
+		"Chapter": "03L3",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "3"
+	},
+	{
+		"Chapter": "04L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "1"
+	},
+	{
+		"Chapter": "04L0",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "2"
+	},
+	{
+		"Chapter": "04L0",
+		"Type": "D",
+		"Answer": "7",
+		"Number": "3"
+	},
+	{
+		"Chapter": "04L0",
+		"Type": "D",
+		"Answer": "45",
+		"Number": "4"
+	},
+	{
+		"Chapter": "04L0",
+		"Type": "D",
+		"Answer": "8",
+		"Number": "5"
+	},
+	{
+		"Chapter": "04L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "6"
+	},
+	{
+		"Chapter": "04L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "7"
+	},
+	{
+		"Chapter": "04L0",
+		"Type": "D",
+		"Answer": "8",
+		"Number": "8"
+	},
+	{
+		"Chapter": "04L1",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "1"
+	},
+	{
+		"Chapter": "04L1",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "2"
+	},
+	{
+		"Chapter": "04L1",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "04L1",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "4"
+	},
+	{
+		"Chapter": "04L1",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "5"
+	},
+	{
+		"Chapter": "04L1",
+		"Type": "D",
+		"Answer": "7",
+		"Number": "6"
+	},
+	{
+		"Chapter": "04L1",
+		"Type": "D",
+		"Answer": "5",
+		"Number": "7"
+	},
+	{
+		"Chapter": "04L1",
+		"Type": "D",
+		"Answer": "108",
+		"Number": "8"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "1"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "2"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "D",
+		"Answer": "20",
+		"Number": "3"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "4"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "D",
+		"Answer": "550",
+		"Number": "5"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "6"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "7"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "8"
+	},
+	{
+		"Chapter": "04L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "9"
+	},
+	{
+		"Chapter": "04L3",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "1"
+	},
+	{
+		"Chapter": "04L3",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "2"
+	},
+	{
+		"Chapter": "04L3",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "3"
+	},
+	{
+		"Chapter": "05L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "1"
+	},
+	{
+		"Chapter": "05L0",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "2"
+	},
+	{
+		"Chapter": "05L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "3"
+	},
+	{
+		"Chapter": "05L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "4"
+	},
+	{
+		"Chapter": "05L0",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "5"
+	},
+	{
+		"Chapter": "05L0",
+		"Type": "D",
+		"Answer": "100",
+		"Number": "6"
+	},
+	{
+		"Chapter": "05L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "7"
+	},
+	{
+		"Chapter": "05L0",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "8"
+	},
+	{
+		"Chapter": "05L1",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "1"
+	},
+	{
+		"Chapter": "05L1",
+		"Type": "D",
+		"Answer": "5",
+		"Number": "2"
+	},
+	{
+		"Chapter": "05L1",
+		"Type": "D",
+		"Answer": "6",
+		"Number": "3"
+	},
+	{
+		"Chapter": "05L1",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "4"
+	},
+	{
+		"Chapter": "05L1",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "5"
+	},
+	{
+		"Chapter": "05L1",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "6"
+	},
+	{
+		"Chapter": "05L1",
+		"Type": "D",
+		"Answer": "64",
+		"Number": "7"
+	},
+	{
+		"Chapter": "05L1",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "8"
+	},
+	{
+		"Chapter": "05L2",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "1"
+	},
+	{
+		"Chapter": "05L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "2"
+	},
+	{
+		"Chapter": "05L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "05L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "4"
+	},
+	{
+		"Chapter": "05L2",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "5"
+	},
+	{
+		"Chapter": "05L2",
+		"Type": "D",
+		"Answer": "8",
+		"Number": "6"
+	},
+	{
+		"Chapter": "05L2",
+		"Type": "D",
+		"Answer": "75",
+		"Number": "7"
+	},
+	{
+		"Chapter": "05L2",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "8"
+	},
+	{
+		"Chapter": "05L3",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "1"
+	},
+	{
+		"Chapter": "05L3",
+		"Type": "D",
+		"Answer": "21",
+		"Number": "2"
+	},
+	{
+		"Chapter": "05L3",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "1"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "2"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "3"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "D",
+		"Answer": "15",
+		"Number": "4"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "D",
+		"Answer": "18",
+		"Number": "5"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "6"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "D",
+		"Answer": "16",
+		"Number": "7"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "8"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "9"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "D",
+		"Answer": "10",
+		"Number": "10"
+	},
+	{
+		"Chapter": "06L0",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "11"
+	},
+	{
+		"Chapter": "06L1",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "1"
+	},
+	{
+		"Chapter": "06L1",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "2"
+	},
+	{
+		"Chapter": "06L1",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "3"
+	},
+	{
+		"Chapter": "06L1",
+		"Type": "D",
+		"Answer": "890",
+		"Number": "4"
+	},
+	{
+		"Chapter": "06L1",
+		"Type": "D",
+		"Answer": "22",
+		"Number": "5"
+	},
+	{
+		"Chapter": "06L1",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "6"
+	},
+	{
+		"Chapter": "06L1",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "7"
+	},
+	{
+		"Chapter": "06L1",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "8"
+	},
+	{
+		"Chapter": "06L2",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "1"
+	},
+	{
+		"Chapter": "06L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "2"
+	},
+	{
+		"Chapter": "06L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "06L2",
+		"Type": "D",
+		"Answer": "22",
+		"Number": "4"
+	},
+	{
+		"Chapter": "06L2",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "5"
+	},
+	{
+		"Chapter": "06L2",
+		"Type": "D",
+		"Answer": "81",
+		"Number": "6"
+	},
+	{
+		"Chapter": "06L2",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "7"
+	},
+	{
+		"Chapter": "06L2",
+		"Type": "D",
+		"Answer": "8",
+		"Number": "8"
+	},
+	{
+		"Chapter": "06L3",
+		"Type": "D",
+		"Answer": "825",
+		"Number": "1"
+	},
+	{
+		"Chapter": "06L3",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "2"
+	},
+	{
+		"Chapter": "06L3",
+		"Type": "D",
+		"Answer": "6",
+		"Number": "3"
+	},
+	{
+		"Chapter": "06L3",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "4"
+	},
+	{
+		"Chapter": "06L3",
+		"Type": "D",
+		"Answer": "56",
+		"Number": "5"
+	}
+]

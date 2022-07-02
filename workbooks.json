@@ -1,11 +1,31 @@
 {
 	"korean": [
 		{
-			"id":"23ebsKoreanLiterature",
-			"value":"2023 EBS 수능특강 문학  (준비중)"
+			"id":"23ebsSTKorLit",
+			"value":"2023 EBS 수능특강 문학 (준비중)"
+		},
+		{
+			"id":"23ebsSTKorRead",
+			"value":"2023 EBS 수능특강 독서 (준비중)"
+		},
+		{
+			"id":"23ebsSTKorLangMed",
+			"value":"2023 EBS 수능특강 언어와 매체 (준비중)"
+		},
+		{
+			"id":"23ebsSTKorTalkWrite",
+			"value":"2023 EBS 수능특강 화법과 작문 (준비중)"
 		}
 	],
 	"math": [
+		{
+			"id":"23ebsSTmathI",
+			"value":"2023 EBS 수능특강 수학I"
+		},
+		{
+			"id":"23ebsSTmathII",
+			"value":"2023 EBS 수능특강 수학II"
+		},
 		{
 			"id":"22xi-mathI3",
 			"value":"2022 자이스토리 수학I (고3)"
@@ -20,11 +40,11 @@
 		},
 		{
 			"id":"22xi-prob&stat3",
-			"value":"2022 자이스토리 확률과 통계 (고3) (준비중)"
+			"value":"2022 자이스토리 확률과 통계 (고3)"
 		},
 		{
 			"id":"22xi-geometry3",
-			"value":"2022 자이스토리 기하 (고3) (준비중)"
+			"value":"2022 자이스토리 기하 (고3)"
 		},
 		{
 			"id":"23ruleOf4-mathIS1",
@@ -41,30 +61,30 @@
 	],
 	"english": [
 		{
-			"id":"2023ebsEnglish",
-			"value":"2023 EBS 수능특강 영어(준비중)"
+			"id":"23ebsSTEng",
+			"value":"2023 EBS 수능특강 영어 (준비중)"
 		},
 		{
-			"id":"2023ebsEnglishReading",
-			"value":"2023 EBS 수능특강 영어독해연습(준비중)"
+			"id":"23ebsSTEngRead",
+			"value":"2023 EBS 수능특강 영어독해연습 (준비중)"
 		}
 	],
 	"science": [
 		{
-			"id":"23xi-physicsI",
-			"value": "2023 자이스토리 물리학I(준비중)"
+			"id":"22xi-physicsI",
+			"value": "2023 자이스토리 물리학I (준비중)"
 		},
 		{
-			"id":"23xi-chemistryI",
-			"value":"2023 자이스토리 화학I(준비중)"
+			"id":"22xi-chemistryI",
+			"value":"2023 자이스토리 화학I (준비중)"
 		},
 		{
-			"id":"23xi-biologyI",
-			"value":"2023 자이스토리 생명과학I(준비중)"
+			"id":"22xi-biologyI",
+			"value":"2023 자이스토리 생명과학I (준비중)"
 		},
 		{
-			"id":"23xi-earthI",
-			"value":"2023 자이스토리 지구과학I(준비중)"
+			"id":"22xi-earthI",
+			"value":"2023 자이스토리 지구과학I (준비중)"
 		}
 	],
 	"sociology": [
