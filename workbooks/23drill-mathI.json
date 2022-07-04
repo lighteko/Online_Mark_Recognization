@@ -1,0 +1,488 @@
+[
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "353",
+		"Number": "1"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "2"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "3"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "53",
+		"Number": "4"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "5"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "6"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "38",
+		"Number": "7"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "42",
+		"Number": "8"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "9"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "10"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "5",
+		"Number": "11"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "12"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "13"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "4",
+		"Number": "14"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "15"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "16"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "17"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "18"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "33",
+		"Number": "19"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "20"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "81",
+		"Number": "21"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "8",
+		"Number": "22"
+	},
+	{
+		"Chapter": "I",
+		"Type": "D",
+		"Answer": "68",
+		"Number": "23"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "24"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "25"
+	},
+	{
+		"Chapter": "I",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "26"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "1"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "2"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "3"
+	},
+	{
+		"Chapter": "II",
+		"Type": "D",
+		"Answer": "17",
+		"Number": "4"
+	},
+	{
+		"Chapter": "II",
+		"Type": "D",
+		"Answer": "275",
+		"Number": "5"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "6"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "7"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "8"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "9"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "10"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "11"
+	},
+	{
+		"Chapter": "II",
+		"Type": "D",
+		"Answer": "20",
+		"Number": "12"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "13"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "14"
+	},
+	{
+		"Chapter": "II",
+		"Type": "D",
+		"Answer": "21",
+		"Number": "15"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "16"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "17"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "18"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "19"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "20"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "21"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "22"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "23"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "24"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "25"
+	},
+	{
+		"Chapter": "II",
+		"Type": "D",
+		"Answer": "27",
+		"Number": "26"
+	},
+	{
+		"Chapter": "II",
+		"Type": "O",
+		"Answer": "4",
+		"Number": "27"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "1"
+	},
+	{
+		"Chapter": "III",
+		"Type": "D",
+		"Answer": "22",
+		"Number": "2"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "3"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "4"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "5"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "6"
+	},
+	{
+		"Chapter": "III",
+		"Type": "D",
+		"Answer": "9",
+		"Number": "7"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "8"
+	},
+	{
+		"Chapter": "III",
+		"Type": "D",
+		"Answer": "16",
+		"Number": "9"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "10"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "11"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "12"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "13"
+	},
+	{
+		"Chapter": "III",
+		"Type": "D",
+		"Answer": "145",
+		"Number": "14"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "15"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "16"
+	},
+	{
+		"Chapter": "III",
+		"Type": "D",
+		"Answer": "91",
+		"Number": "17"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "3",
+		"Number": "18"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "19"
+	},
+	{
+		"Chapter": "III",
+		"Type": "D",
+		"Answer": "29",
+		"Number": "20"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "21"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "22"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "1",
+		"Number": "23"
+	},
+	{
+		"Chapter": "III",
+		"Type": "D",
+		"Answer": "9",
+		"Number": "24"
+	},
+	{
+		"Chapter": "III",
+		"Type": "D",
+		"Answer": "36",
+		"Number": "25"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "26"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "2",
+		"Number": "27"
+	},
+	{
+		"Chapter": "III",
+		"Type": "O",
+		"Answer": "5",
+		"Number": "28"
+	}
+]
