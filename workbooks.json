@@ -2,19 +2,19 @@
 	"korean": [
 		{
 			"id":"23ebsSTKorLit",
-			"value":"2023 EBS 수능특강 문학 (준비중)"
+			"value":"2023 EBS 수능특강 문학 (2부,3부)"
 		},
 		{
 			"id":"23ebsSTKorRead",
-			"value":"2023 EBS 수능특강 독서 (준비중)"
+			"value":"2023 EBS 수능특강 독서 (2부,3부)"
 		},
 		{
 			"id":"23ebsSTKorLangMed",
-			"value":"2023 EBS 수능특강 언어와 매체 (준비중)"
+			"value":"2023 EBS 수능특강 언어와 매체 (2부,3부)"
 		},
 		{
 			"id":"23ebsSTKorTalkWrite",
-			"value":"2023 EBS 수능특강 화법과 작문 (준비중)"
+			"value":"2023 EBS 수능특강 화법과 작문 (2부,3부)"
 		}
 	],
 	"math": [
@@ -25,6 +25,18 @@
 		{
 			"id":"23ebsSTmathII",
 			"value":"2023 EBS 수능특강 수학II"
+		},
+		{
+			"id":"23ebsSTcalculus",
+			"value":"2023 EBS 수능특강 미적분"
+		},
+		{
+			"id":"23ebsSTgeometry",
+			"value":"2023 EBS 수능특강 기하"
+		},
+		{
+			"id":"23ebsSTprob&stat",
+			"value":"2023 EBS 수능특강 확률과 통계"
 		},
 		{
 			"id":"22xi-mathI3",

@@ -35,6 +35,7 @@ function Enterance() {
 				</div>
 				<p style={{fontSize:"1.3em"}}>채점이 귀찮으시다고요?</p>
 				<p>OMR이 자동으로 문제집을 채점해 드립니다.<br/>지금 바로 시작하세요!!</p>
+				<p>업데이트는 매주 주말에 진행됩니다!</p>
 			</div>
 			<div style={{display :"flex",flexDirection:"column", justifyContent: "center",marginTop:"80px"}} id="start-btn-container">
 				<Button onclick={showMainPage} id="start" value={"시작하기"}/>
