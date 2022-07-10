@@ -78,6 +78,8 @@ function Main() {
 				    <Subject value="영어" className="sb english"/>
 				    <Subject value="과학" className="sb science"/>
 				    <Subject value="사회" className="sb sociology"/>
+				    <Subject value="한국사" className="sb history"/>
+				    <Subject value="외국어" className="sb foreignLang"/>
 	  		  	</div>
 			);
 		}
@@ -248,7 +250,7 @@ function Main() {
 					<div id="range-number-end">
 						<select onChange={onChange} id="end-number" value={endNumber}>
 							<option id="placeholder" value="">문제 선택</option>
-							{numbers.slice(1,numbers.length).map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
+							{numbers.map((number) => (<option id={"n_"+number} key={number} value={number}>{number+" 번"}</option>))}
 						</select>
 						<h3 style={{width:"40px"}}>문제</h3>
 					</div>
@@ -311,22 +313,32 @@ function OMR() {
 		const [startCh,startNum,endCh,endNum] = range;
 		let parsedAns = [];
 		let answersList = [];
-		for (let i = 0; i < jsonData.length+1; i++) {
+		if (startCh+startNum==endCh+endNum) {
+			for (let i = 0; i < jsonData.length; i++) {
+				if (startCh == jsonData[i]["Chapter"] && startNum == jsonData[i]["Number"]) {
+					parsedAns.push(jsonData[i])
+					setCells(parsedAns);
+				}
+			}
+		}
+		else {
+			for (let i = 0; i < jsonData.length+1; i++) {
 			if(startCh == jsonData[i]["Chapter"] && startNum == jsonData[i]["Number"]){
-				keepAppend = true;
-				appendStarted = true;
-			}
-			else if (endCh == jsonData[i]["Chapter"] && endNum == jsonData[i]["Number"]) {
-				keepAppend = false;
-				parsedAns.push(jsonData[i]);
-			}
-			if(keepAppend == true) {
-  	        	parsedAns.push(jsonData[i]);
-			}
-			if (appendStarted==true && keepAppend==false) {
-				setCells(parsedAns);
-				break
-			}
+					keepAppend = true;
+					appendStarted = true;
+				}
+				else if (endCh == jsonData[i]["Chapter"] && endNum == jsonData[i]["Number"]) {
+					keepAppend = false;
+					parsedAns.push(jsonData[i]);
+				}
+				if(keepAppend == true) {
+  		        	parsedAns.push(jsonData[i]);
+				}
+				if (appendStarted==true && keepAppend==false) {
+					setCells(parsedAns);
+					break
+				}
+			}	
 		}
 	}
 	React.useEffect(() => {

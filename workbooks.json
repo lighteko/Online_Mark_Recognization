@@ -68,11 +68,15 @@
 		},
 		{
 			"id":"23ruleOf4-mathIIS1",
-			"value":"2023 4의 규칙 수학II Season1(준비중)"
+			"value":"2023 4의 규칙 수학II Season1"
 		},
 		{
 			"id":"23ruleOf4-calculusS1",
-			"value":"2023 4의 규칙 미적분 Season1(준비중)"
+			"value":"2023 4의 규칙 미적분 Season1"
+		},
+		{
+			"id":"23ruleOf4-geometryS1",
+			"value":"2023 4의 규칙 기하 Season1"
 		}
 	],
 	"english": [
@@ -105,8 +109,20 @@
 	],
 	"sociology": [
 		{
-			"id":"(준비중)",
+			"id":"",
 			"value":"(준비중)"
+		}
+	],
+	"history": [
+		{
+			"id":"23ebsSThistory",
+			"value": "2023 EBS 수능특강 한국사 (준비중)"
+		}
+	],
+	"foreignLang": [
+		{
+			"id":"",
+			"value": "(준비중)"
 		}
 	]
 }

@@ -216,7 +216,12 @@ button:active{
 	background: #9CC9B9;
 }
 
-
+#range-start {
+	justify-content: center;
+}
+#range-end {
+	justify-content: center;
+}
 
 
 button.sb {
