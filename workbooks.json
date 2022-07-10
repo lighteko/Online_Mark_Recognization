@@ -91,26 +91,158 @@
 	],
 	"science": [
 		{
+			"id":"23ebsSTphysicsI",
+			"value": "2023 EBS 수능특강 물리학I"
+		},
+		{
+			"id":"23ebsSTchemistryI",
+			"value": "2023 EBS 수능특강 화학I"
+		},
+		{
+			"id":"23ebsSTbiologyI",
+			"value": "2023 EBS 수능특강 생명과학I"
+		},
+		{
+			"id":"23ebsSTearthI",
+			"value": "2023 EBS 수능특강 지구과학I"
+		},
+		{
+			"id":"23ebsSTphysicsII",
+			"value": "2023 EBS 수능특강 물리학II"
+		},
+		{
+			"id":"23ebsSTchemistryII",
+			"value": "2023 EBS 수능특강 화학II"
+		},
+		{
+			"id":"23ebsSTbiologyII",
+			"value": "2023 EBS 수능특강 생명과학II"
+		},
+		{
+			"id":"23ebsSTearthII",
+			"value": "2023 EBS 수능특강 지구과학II"
+		},
+		{
+			"id":"23ebsSWphysicsI",
+			"value": "2023 EBS 수능완성 물리학I"
+		},
+		{
+			"id":"23ebsSWchemistryI",
+			"value": "2023 EBS 수능완성 화학I"
+		},
+		{
+			"id":"23ebsSWbiologyI",
+			"value": "2023 EBS 수능완성 생명과학I"
+		},
+		{
+			"id":"23ebsSWearthI",
+			"value": "2023 EBS 수능완성 지구과학I"
+		},
+		{
+			"id":"23ebsSWphysicsII",
+			"value": "2023 EBS 수능완성 물리학II"
+		},
+		{
+			"id":"23ebsSWchemistryII",
+			"value": "2023 EBS 수능완성 화학II"
+		},
+		{
+			"id":"23ebsSWbiologyII",
+			"value": "2023 EBS 수능완성 생명과학II"
+		},
+		{
+			"id":"23ebsSWearthII",
+			"value": "2023 EBS 수능완성 지구과학II"
+		},
+		{
 			"id":"22xi-physicsI",
-			"value": "2023 자이스토리 물리학I (준비중)"
+			"value": "2022 자이스토리 물리학I (준비중)"
 		},
 		{
 			"id":"22xi-chemistryI",
-			"value":"2023 자이스토리 화학I (준비중)"
+			"value":"2022 자이스토리 화학I (준비중)"
 		},
 		{
 			"id":"22xi-biologyI",
-			"value":"2023 자이스토리 생명과학I (준비중)"
+			"value":"2022 자이스토리 생명과학I (준비중)"
 		},
 		{
 			"id":"22xi-earthI",
-			"value":"2023 자이스토리 지구과학I (준비중)"
+			"value":"2022 자이스토리 지구과학I (준비중)"
 		}
 	],
 	"sociology": [
 		{
-			"id":"",
-			"value":"(준비중)"
+			"id":"23ebsSTeastAsia",
+			"value":"2023 EBS 수능특강 동아시아사"
+		},
+		{
+			"id":"23ebsSTeconomy",
+			"value":"2023 EBS 수능특강 경제"
+		},
+		{
+			"id":"23ebsSTethic&idea",
+			"value":"2023 EBS 수능특강 윤리와 사상"
+		},
+		{
+			"id":"23ebsSTkgeography",
+			"value":"2023 EBS 수능특강 한국 지리"
+		},
+		{
+			"id":"23ebsSTliv&ethic",
+			"value":"2023 EBS 수능특강 생활과 윤리"
+		},
+		{
+			"id":"23ebsSTpolitics&law",
+			"value":"2023 EBS 수능특강 정치와 법"
+		},
+		{
+			"id":"23ebsSTsocCulture",
+			"value":"2023 EBS 수능특강 사회 문화"
+		},
+		{
+			"id":"23ebsSTwgeography",
+			"value":"2023 EBS 수능특강 세계 지리"
+		},
+		{
+			"id":"23ebsSTwhistory",
+			"value":"2023 EBS 수능특강 세계사"
+		},
+		{
+			"id":"23ebsSWeastAsia",
+			"value":"2023 EBS 수능완성 동아시아사"
+		},
+		{
+			"id":"23ebsSWeconomy",
+			"value":"2023 EBS 수능완성 경제"
+		},
+		{
+			"id":"23ebsSWethic&idea",
+			"value":"2023 EBS 수능완성 윤리와 사상"
+		},
+		{
+			"id":"23ebsSWkgeography",
+			"value":"2023 EBS 수능완성 한국 지리"
+		},
+		{
+			"id":"23ebsSWliv&ethic",
+			"value":"2023 EBS 수능완성 생활과 윤리"
+		},
+		{
+			"id":"23ebsSWpolitics&law",
+			"value":"2023 EBS 수능완성 정치와 법"
+		},
+		{
+			"id":"23ebsSWsocCulture",
+			"value":"2023 EBS 수능완성 사회 문화"
+		},
+		{
+			"id":"23ebsSWwgeography",
+			"value":"2023 EBS 수능완성 세계 지리"
+		},
+		{
+			"id":"23ebsSWwhistory",
+			"value":"2023 EBS 수능완성 세계사"
 		}
 	],
 	"history": [
