@@ -401,15 +401,15 @@ function OMR() {
 	
 	function OMRblocks() {
 		function checkAnswer() {
+			let wrong = 0;
 			let counter = 0;
 			for (let cell of cells) {
 				if (cell["Type"]==="D") {
 					let mark = document.querySelector(`input[name="dir-cell${cell["Chapter"]+"-"+cell["Number"]}"]`).value;
-					console.log("answer: ",cell["Answer"]);
-					console.log("mark: ",mark);
 					document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#A7CEC7";
 					if (mark != cell["Answer"]) {
 						document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#DF6565";
+						wrong += 1;
 					}
 				}
 				else {
@@ -417,9 +417,11 @@ function OMR() {
 					document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#A7CEC7";
 					if (mark != cell["Answer"]) {
 						document.querySelector(`#omr-block${cell["Chapter"]+"-"+cell["Number"]}`).style.background = "#DF6565";
+						wrong += 1;
 					}
 				}
 				if (counter === cells.length-1) {
+					wrong === 0 ? null : window.alert(`${wrong} 개 틀렸습니다!`);
 					return 
 				}
 				counter += 1;
