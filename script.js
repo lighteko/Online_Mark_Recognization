@@ -3,6 +3,43 @@ const root = document.getElementById("root");
 const omrcard = document.getElementById("omr-card");
 const result = document.getElementById("result");
 
+Element.prototype.remove = function() {
+    this.parentElement.removeChild(this);
+}
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for(var i = this.length - 1; i >= 0; i--) {
+        if(this[i] && this[i].parentElement) {
+            this[i].parentElement.removeChild(this[i]);
+        }
+    }
+}
+
+function createElement(element, attribute, inner) {
+  if (typeof(element) === "undefined") {
+    return false;
+  }
+  if (typeof(inner) === "undefined") {
+    inner = "";
+  }
+  var el = document.createElement(element);
+  if (typeof(attribute) === 'object') {
+    for (var key in attribute) {
+      el.setAttribute(key, attribute[key]);
+    }
+  }
+  if (!Array.isArray(inner)) {
+    inner = [inner];
+  }
+  for (var k = 0; k < inner.length; k++) {
+    if (inner[k].tagName) {
+      el.appendChild(inner[k]);
+    } else {
+      el.appendChild(document.createTextNode(inner[k]));
+    }
+  }
+  return el;
+}
+
 
 function H1({value}) {
 	return(<h1 style={{marginBottom:"0px",display:"flex",justifyContent:"center"}}>{value}</h1>)
@@ -31,7 +68,7 @@ function Enterance() {
 			<div id="text-container">
 				<div style={{display:"flex",alignItems: "center",flexDirection:"column"}} id="title-text">
 					<h1 style={{lineHeight:"30px"}}>ONLINE<br/>MARKING READER</h1>
-					<h5>Ver. 1.0.3</h5>
+					<h5>Ver. 1.0.4</h5>
 				</div>
 				<p style={{fontSize:"1.3em"}}>채점이 귀찮으시다고요?</p>
 				<p>OMR이 자동으로 문제집을 채점해 드립니다.<br/>지금 바로 시작하세요!!</p>
@@ -305,7 +342,6 @@ function OMR() {
 	const [range,setRange] = React.useState([]);
 	const [omrView, setOmrView] = React.useState("flex");
 	const [cells, setCells] = React.useState([]);
-	
 	// 채점 범위를 입력했을 때, 선택한 문제집의 답지 정보를 입력한 범위 만큼만 추출해서 답안 리스트로 만드는 함수
 	function answerParser(range,jsonData) {
 		let keepAppend = false;
@@ -421,7 +457,7 @@ function OMR() {
 					}
 				}
 				if (counter === cells.length-1) {
-					wrong === 0 ? null : window.alert(`${wrong} 개 틀렸습니다!`);
+					wrong === 0 ? window.sessionStorage.setItem("wrongAnswers", wrong) : window.sessionStorage.setItem("wrongAnswers", wrong);
 					return 
 				}
 				counter += 1;
@@ -429,11 +465,20 @@ function OMR() {
 		}
 		function onClick() {
 			checkAnswer();
+			let wrongN = window.sessionStorage.getItem("wrongAnswers");
+			if (wrongN != "undefined") {
+				document.getElementById("resultText") == null ? null : document.getElementById("resultText").remove();
+				let wrong = createElement("p",{"id":"resultText"});
+				wrongN==0 ? wrong.innerHTML = "다 맞았습니다!" : wrong.innerHTML = `${wrongN}개 틀렸습니다`;
+				let divElem = document.getElementById('result');
+				divElem.appendChild(wrong);
+			}
 		}
 		const Blocks = cells.map((cell) => <OmrCell key={cell["Chapter"] + cell["Number"]} Num={cell["Chapter"]+"-"+cell["Number"]} Type={cell["Type"]}/>);
 		return (
-			<div style={{display: omrView, flexDirection:"column"}}>
+			<div id="blocks-container" style={{display: omrView, flexDirection:"column"}}>
 			    <div id="omr-blocks">{Blocks}</div>
+				<div id="result"></div>
 			    <Button onclick={onClick} id="check" value="채점하기"/>
 				<div style={{marginTop:"10px"}}>
 					<Button id="refresh" value="처음으로" onclick={()=>(window.location.reload())}/>
@@ -446,6 +491,7 @@ function OMR() {
 	}
 	return <OMRblocks/>
 }
+
 
 function showMainPage() {
 	ReactDOM.render(<Main/>,root);
