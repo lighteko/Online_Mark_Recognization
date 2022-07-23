@@ -15,6 +15,14 @@
 		{
 			"id":"23ebsSTKorTalkWrite",
 			"value":"2023 EBS 수능특강 화법과 작문 (2부,3부)"
+		},
+		{
+			"id":"23ebsSWKorLangMed",
+			"value":"2023 EBS 수능완성 언어와 매체 (실전)"
+		},
+		{
+			"id":"23ebsSWKorTalkWrite",
+			"value":"2023 EBS 수능완성 화법과 작문 (실전)"
 		}
 	],
 	"math": [
